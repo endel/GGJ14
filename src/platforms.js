@@ -54,6 +54,8 @@ var platforms = {
 		ground.width = currWidth;
 		ground.body.immovable = true;
 
+		collector.addObject(1, (currX + (currWidth / 2)), tileY);
+
 		if(this.grounds.length == 0)
 		{
 			player.instance.y = tileY - player.instance.height;
@@ -72,7 +74,7 @@ var platforms = {
 		return game.width - (this.nextX + this.group.x);
 	},
 	// Função de enterFrame
-	refreshPosition: function(currX)
+	refreshPosition: function()
 	{
 		this.group.x -= worldVelocity;
 		
