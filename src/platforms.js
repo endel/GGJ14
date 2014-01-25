@@ -1,9 +1,9 @@
 var platforms = {
 	// array de plataformas
 	grounds: [],
-	// 
+	//
 	visibleGroup: null,
-	// 
+	//
 	collideGroup: null,
 	// step da largura da plataforma
 	tileWidth: 100,
@@ -81,7 +81,6 @@ var platforms = {
 		visibleGround2.width = currWidth - (visibleGround1.width + visibleGround3.width);
 		this.visibleGroup.add(visibleGround2);
 
-    	// ground.filters = filters.all;
 		collector.addObject(1, (currX + (currWidth / 2)), tileY);
 
 

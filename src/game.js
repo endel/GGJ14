@@ -5,8 +5,10 @@ var worldVelocity = 2;
 var countdownToSpeedUp = 100;
 
 function preload(a) {
-    // game.load.script('gray-filter', 'src/filters/GrayFilter.js');
-    // game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
+    // init
+    game.load.script('gray-filter', 'src/filters/GrayFilter.js');
+    game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
+
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
@@ -17,7 +19,7 @@ function preload(a) {
     game.load.image('dia-mountain-lvl-3', 'assets/background/dia/mountain-lvl-3.png');
     game.load.image('dia-lake-forest', 'assets/background/dia/lake-forest.png');
     game.load.image('dia-sky', 'assets/background/dia/sky.png');
-    game.load.image('dia-cloud-front', 'assets/background/dia/cloud-front.png');
+    // game.load.image('dia-cloud-front', 'assets/background/dia/cloud-front.png');
 
     game.load.image('platform1-1', 'assets/platforms/platform1-1.png');
     game.load.image('platform1-2', 'assets/platforms/platform1-2.png');
@@ -35,11 +37,14 @@ function create() {
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    // filters.init();
+    filters.init();
     levels.init(game.level);
     platforms.init();
     player.init();
-    // parallax.init();
+    parallax.init();
+
+    // wtf gambi, mas funciona
+    game.stage._stage.children[0].filters = filters.all;
 
 
     // platforms.group = game.add.group();
@@ -62,7 +67,7 @@ function update() {
     game.physics.collide(player.instance, platforms.collideGroup);
 
 
-    // filters.update();
+    filters.update();
     parallax.update();
     player.update();
 

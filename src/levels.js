@@ -1,6 +1,6 @@
 var offsetY = 17;
 var levels = {
-	
+
 	actualGroup: null,
 	group1:{
 
@@ -165,7 +165,7 @@ var levels = {
 	// },
 
 	changeLevel: function(level){
-		
+
 		// switch(level){
 		// 	case 1:
 		// 		console.log("level 1");
