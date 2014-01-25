@@ -21,7 +21,7 @@ var collector = {
 
 		sprite = game.add.sprite(x, y, imageId);
 		sprite.name = imageId + this.objects.length;
-	    sprite.y -= sprite.height;
+    sprite.y -= sprite.height;
 		this.group.add(sprite);
 
 		this.objects.push(sprite);
