@@ -1,9 +1,8 @@
 var game = new Phaser.Game(900, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
-var ground;
 var cursors;
 var filter;
 
-var worldVelocity = 20;
+var worldVelocity = 1;
 
 
 function preload(a) {
@@ -21,12 +20,16 @@ function create() {
     var t = game.add.text(game.world.centerX-300, 0, "teste", { font: "65px Arial", fill: "#ff0044", align: "center" });
     cursors = game.input.keyboard.createCursorKeys();
 
+    
     player.init();
     platforms.init(game);
 
+
+
+
     // platforms.group = game.add.group();
-    ground = platforms.group.create(-50, game.world.height - 64, 'ground');
-    ground.body.immovable = true;
+    /*ground = platforms.group.create(-50, game.world.height - 64, 'ground');
+    ground.body.immovable = true;*/
 
 
     /*var doge = game.add.sprite(game.world.centerX, game.world.centerY, 'doge');
@@ -43,8 +46,8 @@ function update() {
 
     player.update();
 
-    ground.body.velocity.x = -worldVelocity;
-    platforms.refreshPosition(ground.body.x);
+    //ground.body.velocity.x = -worldVelocity;
+    platforms.refreshPosition();
 
     //filter.update();
 	

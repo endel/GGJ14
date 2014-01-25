@@ -1,28 +1,37 @@
 var platforms = {
-	levelX:0,
+	// array de plataformas
+	grounds: [],
+	// container de todas as plataformas
 	group: null,
+	// step da largura da plataforma
 	tileWidth: 100,
-	tileHeight: 100,
+	// step da posição vertical da plataforma
+	tileY: 100,
+	// largura do espaço vazio entre as plataformas
+	tileInterval: 100,
+	// posição X para a próxima inserção de plataforma
+	nextX: 0,
+	// inicializa o game
 	init: function(game)
 	{
-		platforms.group = game.add.group();
-
-		platforms.insertPlatform();
+		this.group = game.add.group();
+		this.insertGround();
 	},
-	insertPlatform: function()
+	// insere uma plataforma de acordo com o level atual
+	insertGround: function()
 	{
-		var minTileSize, maxTileSize, tileSize, minTileY, maxTileY, tileY, currWidth, currHeight;
+		var ground, minTileSize, maxTileSize, tileSize, minTileY, maxTileY, tileY, currWidth, currHeight, currX;
 
 		switch(game.level)
 		{
 			case 1:
-				minTileSize = 8;
-				maxTileSize = 10;
+				minTileSize = 6;
+				maxTileSize = 8;
 				minTileY = 3;
 				maxTileY = 4;
 				break;
 			case 2:
-				minTileSize = 5;
+				minTileSize = 4;
 				maxTileSize = 10;
 				minTileY = 2;
 				maxTileY = 4;
@@ -36,21 +45,41 @@ var platforms = {
 		}
 		tileSize = Math.floor(((maxTileSize + 1) - (minTileSize - 1)) * Math.random()) + minTileSize;
 		tileY = Math.floor(((maxTileY + 1) - (minTileY - 1)) * Math.random()) + minTileY;
-		tileY = tileY * platforms.tileHeight;
-		currWidth = tileSize * platforms.tileWidth;
+		tileY = tileY * this.tileY;
+		currWidth = tileSize * this.tileWidth;
 
-		console.log('tileY: ' + tileY);
-		console.log('currWidth: ' + currWidth);
+		currX = (this.grounds.length == 0)?this.tileInterval/-2:this.nextX + this.tileInterval/2;
+
+		ground = this.group.create(currX, tileY, 'ground');
+		ground.width = currWidth;
+		ground.body.immovable = true;
+
+		if(this.grounds.length == 0)
+		{
+			player.instance.y = tileY - player.instance.height;
+			this.nextX += ground.width;
+		}
+		else
+		{
+			this.nextX += ground.width + this.tileInterval;
+		}
+		this.grounds.push(ground);
 
 	},
+	// Retorna o total da largura que está sem plataformas.
+	getEmptyWidth: function()
+	{
+		return game.width - (this.nextX + this.group.x);
+	},
+	// Função de enterFrame
 	refreshPosition: function(currX)
 	{
+		this.group.x -= worldVelocity;
 		
+		while(this.getEmptyWidth() > (game.width * -1))
+		{
+			console.log(this.grounds.length);
+			this.insertGround();
+		}
 	}
 };
-
-
-
-    /*platforms.group = game.add.group();
-    ground = platforms.group.create(0, game.world.height - 64, 'ground');
-    ground.body.immovable = true;*/
