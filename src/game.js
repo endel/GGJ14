@@ -1,4 +1,4 @@
-var game = new Phaser.Game(900, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
 var ground;
 var cursors;
 var filter;
@@ -13,6 +13,14 @@ function preload(a) {
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    game.load.image('dia-mountain-lvl-1', 'assets/background/dia/mountain-lvl-1.png');
+    game.load.image('dia-mountain-lvl-2', 'assets/background/dia/mountain-lvl-2.png');
+    game.load.image('dia-mountain-lvl-3', 'assets/background/dia/mountain-lvl-3.png');
+    game.load.image('dia-lake-forest', 'assets/background/dia/lake-forest.png');
+    game.load.image('dia-sky', 'assets/background/dia/sky.png');
+    game.load.image('dia-cloud-front', 'assets/background/dia/cloud-front.png');
+
+    
 }
  
 function create() {
@@ -21,6 +29,7 @@ function create() {
     var t = game.add.text(game.world.centerX-300, 0, "teste", { font: "65px Arial", fill: "#ff0044", align: "center" });
     cursors = game.input.keyboard.createCursorKeys();
 
+    parallax.init();
     player.init();
     platforms.init(game);
 
@@ -41,6 +50,7 @@ function update() {
     // always on top
     game.physics.collide(player.instance, platforms.group);
 
+    parallax.update();
     player.update();
 
     ground.body.velocity.x = -worldVelocity;
