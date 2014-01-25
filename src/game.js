@@ -26,7 +26,8 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
 
     // filters.init();
-    parallax.init();
+    levels.init(game.level);
+    // parallax.init();
     player.init();
     platforms.init(game);
 
