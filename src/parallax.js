@@ -23,7 +23,7 @@ var parallax = {
 		'dia-cloud-front':{
 			y:offsetY+0,
 			width:4000,
-			xRatio:.1	,
+			xRatio:.15	,
 			instances:[]
 		},
 
@@ -58,7 +58,7 @@ var parallax = {
     		this.ar[x].instances.push(this.group.create(0, this.ar[x].y, x));
     		this.ar[x].instances[0].body.immovable = true;
 
-    		if(this.ar[x].xRation > 0){
+    		if(this.ar[x].xRatio > 0){
     			this.ar[x].instances.push(this.group.create(this.ar[x].width, this.ar[x].y, x));
     			this.ar[x].instances[1].body.immovable = true;
     		}
@@ -70,7 +70,7 @@ var parallax = {
 	update:function(){
 
 		for(var x in this.ar){
-			if(this.ar[x].xRation <= 0) continue;
+			if(this.ar[x].xRatio <= 0) continue;
 			for(var y in this.ar[x].instances){
 				var altY = (y==0)?1:0;
 

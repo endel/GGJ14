@@ -3,7 +3,7 @@ var cursors;
 var filter;
 
 var worldVelocity = 2;
-
+var countdownToSpeedUp = 100;
 
 function preload(a) {
     game.load.image('doge', 'assets/doge.png');
@@ -62,5 +62,10 @@ function update() {
 	
 	
 
-
+    // PROTOTYPE SPEEDUP -- REMOVE WHEN CORRECT SPEEDUP IMPLEMENTED -- 
+    countdownToSpeedUp--;
+    if(countdownToSpeedUp <= 0) {
+        countdownToSpeedUp = 100;
+        worldVelocity++;
+    }
 }
