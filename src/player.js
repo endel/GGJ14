@@ -6,8 +6,9 @@ var player = {
 
 	init:function(){
 		this.instance = game.add.sprite(-50, game.world.height - 150, 'dude');
-	    this.instance.body.bounce.y = 0.2;
-	    this.instance.body.gravity.y = 12;
+
+	    this.instance.body.bounce.y = 0;
+	    this.instance.body.gravity.y = 15;
 	    this.instance.body.collideWorldBounds = false;
 
 	    this.instance.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -41,7 +42,7 @@ var player = {
 	    	 // JUMP
 	    	if (cursors.up.isDown && this.instance.body.touching.down)
 	        {  
-	            this.instance.body.velocity.y = -350;
+	            this.instance.body.velocity.y = -600;
 	        }
 
 	    }

@@ -1,9 +1,8 @@
 var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
-var ground;
 var cursors;
 var filter;
 
-var worldVelocity = 20;
+var worldVelocity = 2;
 
 
 function preload(a) {
@@ -33,9 +32,12 @@ function create() {
     player.init();
     platforms.init(game);
 
+
+
+
     // platforms.group = game.add.group();
-    ground = platforms.group.create(-50, game.world.height - 64, 'ground');
-    ground.body.immovable = true;
+    /*ground = platforms.group.create(-50, game.world.height - 64, 'ground');
+    ground.body.immovable = true;*/
 
 
     /*var doge = game.add.sprite(game.world.centerX, game.world.centerY, 'doge');
@@ -53,8 +55,8 @@ function update() {
     parallax.update();
     player.update();
 
-    ground.body.velocity.x = -worldVelocity;
-    platforms.refreshPosition(ground.body.x);
+    //ground.body.velocity.x = -worldVelocity;
+    platforms.refreshPosition();
 
     //filter.update();
 	
