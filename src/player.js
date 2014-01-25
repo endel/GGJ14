@@ -5,15 +5,15 @@ var player = {
 	enabled:false,
 
 	init:function(){
-		this.instance = game.add.sprite(100, game.world.height - 150, 'dude');
+		this.instance = game.add.sprite(100, 0, 'dude');
 	    this.instance.body.bounce.y = 0;
 	    this.instance.body.gravity.y = 15;
 	    this.instance.body.collideWorldBounds = false;
 
 	    this.instance.animations.add('left', [0, 1, 2, 3], 10, true);
     	this.instance.animations.add('right', [5, 6, 7, 8], 10, true);
-      this.instance.events.onOutOfBounds.add(this.onOutOfBounds);
-      // this.instance.filters = filters.all;
+		this.instance.events.onOutOfBounds.add(this.onOutOfBounds);
+		// this.instance.filters = filters.all;
 
 	},
 

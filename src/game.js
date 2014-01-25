@@ -18,6 +18,16 @@ function preload(a) {
     game.load.image('dia-lake-forest', 'assets/background/dia/lake-forest.png');
     game.load.image('dia-sky', 'assets/background/dia/sky.png');
     game.load.image('dia-cloud-front', 'assets/background/dia/cloud-front.png');
+
+    game.load.image('platform1-1', 'assets/platforms/platform1-1.png');
+    game.load.image('platform1-2', 'assets/platforms/platform1-2.png');
+    game.load.image('platform1-3', 'assets/platforms/platform1-3.png');
+    game.load.image('platform2-1', 'assets/platforms/platform2-1.png');
+    game.load.image('platform2-2', 'assets/platforms/platform2-2.png');
+    game.load.image('platform2-3', 'assets/platforms/platform2-3.png');
+    game.load.image('platform3-1', 'assets/platforms/platform3-1.png');
+    game.load.image('platform3-2', 'assets/platforms/platform3-2.png');
+    game.load.image('platform3-3', 'assets/platforms/platform3-3.png');
 }
 
 function create() {
@@ -27,8 +37,8 @@ function create() {
 
     // filters.init();
     parallax.init();
+    platforms.init();
     player.init();
-    platforms.init(game);
 
 
     // platforms.group = game.add.group();
@@ -48,7 +58,7 @@ function restart() {
 function update() {
 
     // always on top
-    game.physics.collide(player.instance, platforms.group);
+    game.physics.collide(player.instance, platforms.collideGroup);
 
 
     // filters.update();
@@ -62,9 +72,9 @@ function update() {
     //filter.update();
 
     // PROTOTYPE SPEEDUP -- REMOVE WHEN CORRECT SPEEDUP IMPLEMENTED --
-    countdownToSpeedUp--;
+    /*countdownToSpeedUp--;
     if(countdownToSpeedUp <= 0) {
         countdownToSpeedUp = 100;
         worldVelocity++;
-    }
+    }*/
 }
