@@ -66,6 +66,7 @@ var platforms = {
 		ground = game.add.sprite(currX, tileY, 'ground');
 		this.collideGroup.add(ground);
 		ground.width = currWidth;
+		ground.height = 10;
 		ground.body.immovable = true;
 
 		// adicionando plataforma visível
