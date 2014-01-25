@@ -1,7 +1,6 @@
 var game = new Phaser.Game(960, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
 var player;
 var ground;
-var platforms;
 var cursor;
 
 var worldVelocity = 20;
@@ -18,7 +17,7 @@ function create() {
     var t = game.add.text(game.world.centerX-300, 0, "teste", { font: "65px Arial", fill: "#ff0044", align: "center" });
     cursors = game.input.keyboard.createCursorKeys();
 
-    player = game.add.sprite(32, game.world.height - 150, 'dude');
+    player = game.add.sprite(400, game.world.height - 150, 'dude');
     player.body.bounce.y = 0.2;
     player.body.gravity.y = 6;
     player.body.collideWorldBounds = true;
@@ -28,15 +27,20 @@ function create() {
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
 
-    platforms = game.add.group();
-    ground = platforms.create(0, game.world.height - 64, 'ground');
+    platforms.group = game.add.group();
+    ground = platforms.group.create(0, game.world.height - 64, 'ground');
     ground.body.immovable = true;
 }
  
 function update() {
-	game.physics.collide(player, platforms);
+
+    //game.world.centerX = game.world.centerX - worldVelocity
+    
+	game.physics.collide(player, platforms.group);
 	ground.body.velocity.x = -worldVelocity;
 	player.body.velocity.x = 0;
+
+    platforms.refreshPosition(ground.body.x);
  
     player.animations.play('right');
  
