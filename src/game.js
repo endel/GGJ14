@@ -1,4 +1,4 @@
-var game = new Phaser.Game(960, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(900, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
 var player;
 var ground;
 var cursor;
@@ -29,7 +29,7 @@ function create() {
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-
+    platforms.init(game);
     platforms.group = game.add.group();
     ground = platforms.group.create(0, game.world.height - 64, 'ground');
     ground.body.immovable = true;
@@ -43,6 +43,9 @@ function create() {
 }
  
 function update() {
+
+    //console.log(screen.width);
+    //game.width = screen.width;
 
     //game.world.centerX = game.world.centerX - worldVelocity
 
