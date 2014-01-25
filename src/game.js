@@ -2,7 +2,7 @@ var game = new Phaser.Game(900, 640, Phaser.WEBGL, '', { preload: preload, creat
 var cursors;
 var filter;
 
-var worldVelocity = 1;
+var worldVelocity = 2;
 
 
 function preload(a) {
@@ -20,7 +20,7 @@ function create() {
     var t = game.add.text(game.world.centerX-300, 0, "teste", { font: "65px Arial", fill: "#ff0044", align: "center" });
     cursors = game.input.keyboard.createCursorKeys();
 
-    
+
     player.init();
     platforms.init(game);
 
