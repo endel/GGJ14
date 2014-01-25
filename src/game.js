@@ -2,12 +2,15 @@ var game = new Phaser.Game(960, 640, Phaser.WEBGL, '', { preload: preload, creat
 var player;
 var ground;
 var cursor;
+var filter;
 
 var worldVelocity = 20;
 
 
 function preload(a) {
-	game.load.image('sky', 'assets/sky.png');
+    game.load.image('doge', 'assets/doge.png');
+    game.load.script('filter', 'src/filters/GrayFilter.js');
+    game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
@@ -30,11 +33,20 @@ function create() {
     platforms.group = game.add.group();
     ground = platforms.group.create(0, game.world.height - 64, 'ground');
     ground.body.immovable = true;
+
+
+    /*var doge = game.add.sprite(game.world.centerX, game.world.centerY, 'doge');
+    doge.anchor.setTo(0.5,0.5);
+
+    filter = game.add.filter('GrayFilter', 800, 600);
+    doge.filters = [filter];*/
 }
  
 function update() {
 
     //game.world.centerX = game.world.centerX - worldVelocity
+
+    /*filter.update();*/
     
 	game.physics.collide(player, platforms.group);
 	ground.body.velocity.x = -worldVelocity;
