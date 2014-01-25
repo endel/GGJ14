@@ -5,8 +5,10 @@ var worldVelocity = 2;
 var countdownToSpeedUp = 100;
 
 function preload(a) {
-    // game.load.script('gray-filter', 'src/filters/GrayFilter.js');
-    // game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
+    // init
+    game.load.script('gray-filter', 'src/filters/GrayFilter.js');
+    game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
+
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
@@ -19,7 +21,6 @@ function preload(a) {
     game.load.image('dia-mountain-lvl-3', 'assets/background/dia/mountain-lvl-3.png');
     game.load.image('dia-lake-forest', 'assets/background/dia/lake-forest.png');
     game.load.image('dia-sky', 'assets/background/dia/sky.png');
-    game.load.image('dia-cloud-front', 'assets/background/dia/cloud-front.png');
 
     //tarde
     game.load.image('tarde-mountain-lvl-1', 'assets/background/tarde/mountain-lvl-1.png');
@@ -36,6 +37,16 @@ function preload(a) {
     game.load.image('noite-lake-forest', 'assets/background/noite/lake-forest.png');
     game.load.image('noite-sky', 'assets/background/noite/sky.png');
     game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
+
+    game.load.image('platform1-1', 'assets/platforms/platform1-1.png');
+    game.load.image('platform1-2', 'assets/platforms/platform1-2.png');
+    game.load.image('platform1-3', 'assets/platforms/platform1-3.png');
+    game.load.image('platform2-1', 'assets/platforms/platform2-1.png');
+    game.load.image('platform2-2', 'assets/platforms/platform2-2.png');
+    game.load.image('platform2-3', 'assets/platforms/platform2-3.png');
+    game.load.image('platform3-1', 'assets/platforms/platform3-1.png');
+    game.load.image('platform3-2', 'assets/platforms/platform3-2.png');
+    game.load.image('platform3-3', 'assets/platforms/platform3-3.png');
 }
 
 function create() {
@@ -43,11 +54,13 @@ function create() {
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    // filters.init();
+    filters.init();
     levels.init(game.level);
-    // parallax.init();
-    player.init();
-    platforms.init(game);
+    platforms.init();
+    player.init();    
+
+    // wtf gambi, mas funciona
+    game.stage._stage.children[0].filters = filters.all;
 
 
     // platforms.group = game.add.group();
@@ -67,10 +80,10 @@ function restart() {
 function update() {
 
     // always on top
-    game.physics.collide(player.instance, platforms.group);
+    game.physics.collide(player.instance, platforms.collideGroup);
 
 
-    // filters.update();
+    filters.update();
     parallax.update();
     player.update();
 
@@ -81,9 +94,9 @@ function update() {
     //filter.update();
 
     // PROTOTYPE SPEEDUP -- REMOVE WHEN CORRECT SPEEDUP IMPLEMENTED --
-    countdownToSpeedUp--;
+    /*countdownToSpeedUp--;
     if(countdownToSpeedUp <= 0) {
         countdownToSpeedUp = 100;
         worldVelocity++;
-    }
+    }*/
 }

@@ -44,6 +44,7 @@ var parallax = {
 // 			instances:[]
 // 		},
 // 	},
+
 	init:function(group){
 		this.group = game.add.group();
 		this.actualGroup = group;
@@ -52,12 +53,10 @@ var parallax = {
 
     		group[x].instances.push(this.group.create(0, group[x].y, x));
     		group[x].instances[0].body.immovable = true;
-    		// group[x].instances[0].filters = filters.all;
 
     		if(group[x].xRatio > 0){
     			group[x].instances.push(this.group.create(group[x].width, group[x].y, x));
     			group[x].instances[1].body.immovable = true;
-          // this.ar[x].instances[1].filters = filters.all;
     		}
 
     	}

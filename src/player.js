@@ -5,20 +5,18 @@ var player = {
 	enabled:false,
 
 	init:function(){
-	  this.instance = game.add.sprite(100, game.world.height - 150, 'dude');
-    this.instance.body.bounce.y = 0;
-    this.instance.body.gravity.y = 17;
-    this.instance.body.collideWorldBounds = false;
+		this.instance = game.add.sprite(100, 0, 'dude');
+		this.instance.body.bounce.y = 0;
+		this.instance.body.gravity.y = 17;
+		this.instance.body.collideWorldBounds = false;
 
-    //this.instance.animations.add('left', [0,1,2,3,4,5,6,7,8,9,10], 20, true);
-  	this.instance.animations.add('right', [0,1,2,3,4,5,6,7,8,9], 20, true);
-    this.instance.events.onOutOfBounds.add(this.onOutOfBounds);
-    // this.instance.filters = filters.all;
-
+		//this.instance.animations.add('left', [0,1,2,3,4,5,6,7,8,9,10], 20, true);
+		this.instance.animations.add('right', [0,1,2,3,4,5,6,7,8,9], 20, true);
+		this.instance.events.onOutOfBounds.add(this.onOutOfBounds);
 	},
 
   onOutOfBounds: function() {
-    //game.add.tween(filters.grayscale).to({ gray: 1 }, 1000).onCompleteCallback(restart).start();
+    game.add.tween(filters.grayscale).to({ gray: 1 }, 1000).onCompleteCallback(restart).start();
   },
 
 	update:function(){
