@@ -57,12 +57,12 @@ var parallax = {
 
     		this.ar[x].instances.push(this.group.create(0, this.ar[x].y, x));
     		this.ar[x].instances[0].body.immovable = true;
-    		this.ar[x].instances[0].filters = filters.all;
+    		// this.ar[x].instances[0].filters = filters.all;
 
     		if(this.ar[x].xRatio > 0){
     			this.ar[x].instances.push(this.group.create(this.ar[x].width, this.ar[x].y, x));
     			this.ar[x].instances[1].body.immovable = true;
-          this.ar[x].instances[1].filters = filters.all;
+          // this.ar[x].instances[1].filters = filters.all;
     		}
 
     	}

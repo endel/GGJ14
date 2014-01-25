@@ -58,7 +58,7 @@ var platforms = {
 		ground.width = currWidth;
 		ground.body.immovable = true;
 
-    ground.filters = filters.all;
+    // ground.filters = filters.all;
 		collector.addObject(1, (currX + (currWidth / 2)), tileY);
 
 		if(this.grounds.length == 0)
