@@ -25,7 +25,7 @@ function create() {
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    filters.init();
+    // filters.init();
     parallax.init();
     player.init();
     platforms.init(game);
@@ -51,7 +51,7 @@ function update() {
     game.physics.collide(player.instance, platforms.group);
 
 
-    filters.update();
+    // filters.update();
     parallax.update();
     player.update();
 
