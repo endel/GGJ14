@@ -1,6 +1,6 @@
 var offsetY = 17;
 var levels = {
-	
+
 	actualGroup: null,
 	group1:{
 
@@ -50,42 +50,42 @@ var levels = {
 
 	group2:{
 
-		'dia-sky':{
+		'tarde-sky':{
 			y:0,
 			width:4000,
 			xRatio:0	,
 			instances:[]
 		},
 
-		'dia-mountain-lvl-3':{
+		'tarde-mountain-lvl-3':{
 			y:offsetY+85,
 			width:4000,
 			xRatio:.1	,
 			instances:[]
 		},
 
-// 		'dia-cloud-front':{
+// 		'tarde-cloud-front':{
 // 			y:offsetY+0,
 // 			width:4000,
 // 			xRatio:.15	,
 // 			instances:[]
 // 		},
 
-		'dia-mountain-lvl-2':{
+		'tarde-mountain-lvl-2':{
 			y:offsetY+115,
 			width:4000,
 			xRatio:.2	,
 			instances:[]
 		},
 
-		'dia-mountain-lvl-1':{
+		'tarde-mountain-lvl-1':{
 			y:offsetY+200,
 			width:4000,
 			xRatio:.3	,
 			instances:[]
 		},
 
-		'dia-lake-forest':{
+		'tarde-lake-forest':{
 			y:offsetY+259,
 			width:4000,
 			xRatio:.5	,
@@ -96,42 +96,42 @@ var levels = {
 
 	group3:{
 
-		'dia-sky':{
+		'noite-sky':{
 			y:0,
 			width:4000,
 			xRatio:0	,
 			instances:[]
 		},
 
-		'dia-mountain-lvl-3':{
+		'noite-mountain-lvl-3':{
 			y:offsetY+85,
 			width:4000,
 			xRatio:.1	,
 			instances:[]
 		},
 
-// 		'dia-cloud-front':{
+// 		'noite-cloud-front':{
 // 			y:offsetY+0,
 // 			width:4000,
 // 			xRatio:.15	,
 // 			instances:[]
 // 		},
 
-		'dia-mountain-lvl-2':{
+		'noite-mountain-lvl-2':{
 			y:offsetY+115,
 			width:4000,
 			xRatio:.2	,
 			instances:[]
 		},
 
-		'dia-mountain-lvl-1':{
+		'noite-mountain-lvl-1':{
 			y:offsetY+200,
 			width:4000,
 			xRatio:.3	,
 			instances:[]
 		},
 
-		'dia-lake-forest':{
+		'noite-lake-forest':{
 			y:offsetY+259,
 			width:4000,
 			xRatio:.5	,
@@ -166,19 +166,21 @@ var levels = {
 
 	changeLevel: function(level){
 		
-		// switch(level){
-		// 	case 1:
-		// 		console.log("level 1");
-		// 	break;
+		switch(level){
+			case 1:
+				this.actualGroup = this.group1;
+			break;
 
-		// 	case 2:
-		// 		console.log("level 2");
-		// 	break;
+			case 2:
+				this.actualGroup = this.group2;
+			break;
 
-		// 	case 3:
-		// 		console.log("level 3");
-		// 	break;
-		// }
+			case 3:
+				this.actualGroup = this.group3;
+			break;
+		}
+
+		parallax.replaceGroupChild(this.actualGroup);
 
 	},
 
