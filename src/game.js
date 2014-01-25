@@ -11,7 +11,7 @@ function preload(a) {
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
     game.load.image('diamond', 'assets/diamond.png');
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    game.load.spritesheet('dude', 'assets/cora-run.png', 70, 100 );
     game.load.image('dia-mountain-lvl-1', 'assets/background/dia/mountain-lvl-1.png');
     game.load.image('dia-mountain-lvl-2', 'assets/background/dia/mountain-lvl-2.png');
     game.load.image('dia-mountain-lvl-3', 'assets/background/dia/mountain-lvl-3.png');
