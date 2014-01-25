@@ -5,7 +5,7 @@ var platforms = {
 	tileHeight: 100,
 	init: function(game)
 	{
-		//platforms.group = platforms.game.add.group();
+		platforms.group = game.add.group();
 
 		platforms.insertPlatform();
 	},
