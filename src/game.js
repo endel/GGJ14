@@ -17,6 +17,8 @@ function preload(a) {
 }
  
 function create() {
+    game.level = 1;
+
     var t = game.add.text(game.world.centerX-300, 0, "teste", { font: "65px Arial", fill: "#ff0044", align: "center" });
     cursors = game.input.keyboard.createCursorKeys();
 
@@ -30,9 +32,6 @@ function create() {
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
     platforms.init(game);
-    platforms.group = game.add.group();
-    ground = platforms.group.create(0, game.world.height - 64, 'ground');
-    ground.body.immovable = true;
 
 
     /*var doge = game.add.sprite(game.world.centerX, game.world.centerY, 'doge');
@@ -44,14 +43,11 @@ function create() {
  
 function update() {
 
-    //console.log(screen.width);
-    //game.width = screen.width;
-
     //game.world.centerX = game.world.centerX - worldVelocity
 
     /*filter.update();*/
     
-	game.physics.collide(player, platforms.group);
+	/*game.physics.collide(player, platforms.group);
 	ground.body.velocity.x = -worldVelocity;
 	player.body.velocity.x = 0;
 
@@ -63,6 +59,6 @@ function update() {
     if (cursors.up.isDown && player.body.touching.down)
     {
         player.body.velocity.y = -350;
-    }
+    }*/
 
 }
