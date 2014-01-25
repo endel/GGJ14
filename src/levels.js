@@ -1,5 +1,6 @@
 var offsetY = 17;
 var levels = {
+	
 	actualGroup: null,
 	group1:{
 
@@ -181,8 +182,7 @@ var levels = {
 
 	},
 
-	getItem: function(item, time){
-
+	objectCollected: function(obj){
+		console.log(obj)
 	}
-
 };
