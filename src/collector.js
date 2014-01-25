@@ -46,5 +46,16 @@ var collector = {
 		this.group.x -= worldVelocity;
 
 		game.physics.overlap(player.instance, this.group, this.collisionHandler);
+
+		for(var i = 0; i < this.objects.length; ++i)
+		{
+			var object = this.objects[i];
+
+			if(object != null && (object.x + object.width) < (this.group.x * -1))
+			{
+				this.group.remove(object);
+				object.kill();
+			}
+		}
 	}
 };

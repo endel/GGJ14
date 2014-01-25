@@ -67,7 +67,6 @@ function update() {
 
     //ground.body.velocity.x = -worldVelocity;
     platforms.refreshPosition();
-    console.log( "update...")
     collector.refreshPosition();
 
     //filter.update();

@@ -50,7 +50,9 @@ var platforms = {
 
 		currX = (this.grounds.length == 0)?this.tileInterval/-2:this.nextX + this.tileInterval/2;
 
-		ground = this.group.create(currX, tileY, 'ground');
+		ground = game.add.sprite(currX, tileY, 'ground');
+		this.group.add(ground);
+		//ground = this.group.create(currX, tileY, 'ground');
 		ground.width = currWidth;
 		ground.body.immovable = true;
 
@@ -80,8 +82,19 @@ var platforms = {
 		
 		while(this.getEmptyWidth() > (game.width * -1))
 		{
-			console.log(this.grounds.length);
 			this.insertGround();
+		}
+
+		for(var i = 0; i < this.grounds.length; ++i)
+		{
+			var ground = this.grounds[i];
+
+			if(ground != null && (ground.x + ground.width) < (this.group.x * -1))
+			{
+				this.group.remove(ground);
+				ground.kill();
+				//this.grounds[i] = null;
+			}
 		}
 	}
 };
