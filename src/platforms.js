@@ -57,6 +57,7 @@ var platforms = {
 		ground.body.immovable = true;
 
     ground.filters = filters.all;
+		collector.addObject(1, (currX + (currWidth / 2)), tileY);
 
 		if(this.grounds.length == 0)
 		{
@@ -78,7 +79,7 @@ var platforms = {
 	},
 
 	// Função de enterFrame
-	refreshPosition: function(currX)
+	refreshPosition: function()
 	{
 		this.group.x -= worldVelocity;
 
