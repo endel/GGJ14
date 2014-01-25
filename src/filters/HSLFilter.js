@@ -27,6 +27,7 @@ Phaser.Filter.HSLFilter = function (game) {
     //  The fragment shader source
     this.fragmentSrc = [
       "precision mediump float;",
+
       "uniform float hue;",
       "uniform float saturation;",
       "uniform float lightness;",
@@ -71,11 +72,9 @@ Phaser.Filter.HSLFilter.prototype = Object.create(Phaser.Filter.prototype);
 Phaser.Filter.HSLFilter.prototype.constructor = Phaser.Filter.HSLFilter;
 
 Phaser.Filter.HSLFilter.prototype.init = function (width, height, gray) {
-    if (typeof gray == 'undefined') { gray = 0.5 };
-
+    if (typeof gray == 'undefined') { gray = 0.5; }
     this.setResolution(width, height);
-    // this.uniforms.gray.value = gray;
-}
+};
 
 Object.defineProperty(Phaser.Filter.HSLFilter.prototype, 'hue', {
     get: function() {
