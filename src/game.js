@@ -1,6 +1,5 @@
 var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
 var cursors;
-var filters = {};
 
 var worldVelocity = 2;
 var countdownToSpeedUp = 100;
@@ -18,25 +17,17 @@ function preload(a) {
     game.load.image('dia-lake-forest', 'assets/background/dia/lake-forest.png');
     game.load.image('dia-sky', 'assets/background/dia/sky.png');
     game.load.image('dia-cloud-front', 'assets/background/dia/cloud-front.png');
-
-
 }
 
 function create() {
     game.level = 1;
 
-    var t = game.add.text(game.world.centerX-300, 0, "teste", { font: "65px Arial", fill: "#ff0044", align: "center" });
     cursors = game.input.keyboard.createCursorKeys();
 
-    // init filters
-    filters.grayscale = game.add.filter('GrayFilter', game.width, game.height);
-    filters.color_reducer = game.add.filter('ColorReducerFilter', game.width, game.height);
-
+    filters.init();
     parallax.init();
     player.init();
     platforms.init(game);
-
-
 
 
     // platforms.group = game.add.group();
@@ -58,9 +49,8 @@ function update() {
     // always on top
     game.physics.collide(player.instance, platforms.group);
 
-    filters.grayscale.update();
-    filters.color_reducer.update();
 
+    filters.update();
     parallax.update();
     player.update();
 
@@ -68,8 +58,6 @@ function update() {
     platforms.refreshPosition();
 
     //filter.update();
-
-
 
     // PROTOTYPE SPEEDUP -- REMOVE WHEN CORRECT SPEEDUP IMPLEMENTED --
     countdownToSpeedUp--;

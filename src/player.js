@@ -13,11 +13,12 @@ var player = {
 	    this.instance.animations.add('left', [0, 1, 2, 3], 10, true);
     	this.instance.animations.add('right', [5, 6, 7, 8], 10, true);
       this.instance.events.onOutOfBounds.add(this.onOutOfBounds);
+      this.instance.filters = filters.all;
 
 	},
 
   onOutOfBounds: function() {
-    game.add.tween(filters.grayscale).to({ gray: 0 }, 1000).onCompleteCallback(restart).start();
+    game.add.tween(filters.grayscale).to({ gray: 1 }, 1000).onCompleteCallback(restart).start();
   },
 
 	update:function(){

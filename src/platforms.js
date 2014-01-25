@@ -11,12 +11,14 @@ var platforms = {
 	tileInterval: 100,
 	// posição X para a próxima inserção de plataforma
 	nextX: 0,
+
 	// inicializa o game
 	init: function(game)
 	{
 		this.group = game.add.group();
 		this.insertGround();
 	},
+
 	// insere uma plataforma de acordo com o level atual
 	insertGround: function()
 	{
@@ -54,6 +56,8 @@ var platforms = {
 		ground.width = currWidth;
 		ground.body.immovable = true;
 
+    ground.filters = filters.all;
+
 		if(this.grounds.length == 0)
 		{
 			player.instance.y = tileY - player.instance.height;
@@ -66,16 +70,18 @@ var platforms = {
 		this.grounds.push(ground);
 
 	},
+
 	// Retorna o total da largura que está sem plataformas.
 	getEmptyWidth: function()
 	{
 		return game.width - (this.nextX + this.group.x);
 	},
+
 	// Função de enterFrame
 	refreshPosition: function(currX)
 	{
 		this.group.x -= worldVelocity;
-		
+
 		while(this.getEmptyWidth() > (game.width * -1))
 		{
 			console.log(this.grounds.length);

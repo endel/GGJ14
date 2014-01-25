@@ -20,7 +20,7 @@ Phaser.Filter.GrayFilter = function (game) {
     * The supported types are: 1f, 1fv, 1i, 2f, 2fv, 2i, 2iv, 3f, 3fv, 3i, 3iv, 4f, 4fv, 4i, 4iv, mat2, mat3, mat4 and sampler2D.
     */
 
-    this.uniforms.gray = { type: '1f', value: 0.5 };
+    this.uniforms.gray = { type: '1f', value: 0 };
 
     //  The fragment shader source
     this.fragmentSrc = [
@@ -41,7 +41,7 @@ Phaser.Filter.GrayFilter.prototype = Object.create(Phaser.Filter.prototype);
 Phaser.Filter.GrayFilter.prototype.constructor = Phaser.Filter.GrayFilter;
 
 Phaser.Filter.GrayFilter.prototype.init = function (width, height, gray) {
-    if (typeof gray == 'undefined') { gray = 0.5 };
+    if (typeof gray == 'undefined') { gray = 0 };
 
     this.setResolution(width, height);
     this.uniforms.gray.value = gray;
