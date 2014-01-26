@@ -6,6 +6,7 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
     render: render,
     debug: true
 });
+
 var cursors;
 
 var worldVelocity = 2;
@@ -86,7 +87,6 @@ function preload(a) {
 
 function create() {
     game.level = 1;
-
     cursors = game.input.keyboard.createCursorKeys();
 
     filters.init();
@@ -103,6 +103,8 @@ function create() {
     doge.anchor.setTo(0.5,0.5);
 
     doge.filters = [filter];*/
+
+    STATICPRELOAD.remove();
 }
 
 function restart() {
