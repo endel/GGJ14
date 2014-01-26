@@ -1,0 +1,7 @@
+var sound = {
+  init: function() {
+
+  },
+
+
+}

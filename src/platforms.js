@@ -162,6 +162,7 @@ var platforms = {
 	// Função de enterFrame
 	update: function()
 	{
+    worldVelocity += 0.001;
 		this.platformsGroup.x -= worldVelocity;
 		this.obstaclesGroup.x -= worldVelocity;
 
@@ -217,9 +218,9 @@ var platforms = {
 
 	obstacleCollided: function(s1, s2)
 	{
-		if(s2.collided == undefined)
+		if(s2.alive)
 		{
-			s2.collided = true;
+      s2.alive = false;
 			player.kill();
 		}
 	},
