@@ -117,7 +117,6 @@ var player = {
       }
 
     } else if (this.instance.animations.currentAnim.name=="jump") {
-      console.log("jumping...", (game.time.now - this.jumpTime));
       // increase jump velocity
       if (cursors.up.isDown && (game.time.now - this.jumpTime) < this.maxJumpTime) {
         this.instance.body.velocity.y -= this.jumpIncreaseRatio;
