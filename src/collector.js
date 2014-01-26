@@ -28,7 +28,7 @@ var collector = {
 
     switch(type) {
       case 'point':
-        sprite.
+        // sprite.
         break;
       case 'energy':
         break;

@@ -203,6 +203,12 @@ var platforms = {
 
 	obstacleCollided: function(s1, s2)
 	{
+		if(s2.collided == undefined)
+		{
+			s2.collided = true;
+			player.kill();
+			console.log("KILL");
+		}
 		//console.log(s1.name, s2.name)
 
 		console.log(s2.body.overlapX, s2.body.overlapY);
