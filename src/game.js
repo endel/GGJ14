@@ -14,6 +14,12 @@ function preload(a) {
     // init
     filters.load();
 
+    // spritesheets
+    game.load.atlas('player', 'assets/player.png', 'assets/player.json');
+
+    // sounds
+    // game.load.atlas('energy-blue', 'assets/items/energy-blue.png', 'assets/items/energy-blue.json');
+
     // energies
     game.load.atlas('energy-blue', 'assets/items/energy-blue.png', 'assets/items/energy-blue.json');
     game.load.atlas('point-blue', 'assets/items/point-blue.png', 'assets/items/point-blue.json');
@@ -21,11 +27,6 @@ function preload(a) {
     game.load.atlas('point-green', 'assets/items/point-green.png', 'assets/items/point-green.json');
     game.load.atlas('energy-red', 'assets/items/energy-red.png', 'assets/items/energy-red.json');
     game.load.atlas('point-red', 'assets/items/point-red.png', 'assets/items/point-red.json');
-
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('ground', 'assets/platform.png');
-    game.load.image('star', 'assets/star.png');
-    game.load.image('diamond', 'assets/diamond.png');
 
     //dia
     game.load.image('dia-mountain-lvl-1', 'assets/background/dia/mountain-lvl-1.png');

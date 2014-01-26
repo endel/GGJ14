@@ -146,6 +146,9 @@ var platforms = {
 	// Função de enterFrame
 	update: function()
 	{
+    // keep increasing world velocity
+    worldVelocity += 0.001;
+
 		this.platformsGroup.x -= worldVelocity;
 		this.obstaclesGroup.x -= worldVelocity;
 
