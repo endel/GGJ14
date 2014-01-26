@@ -1,7 +1,7 @@
-var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', { 
-//var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', { 
-    preload: preload, 
-    create: create, 
+var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
+// var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
+    preload: preload,
+    create: create,
     update: update,
     render: render,
     debug: true
@@ -13,15 +13,14 @@ var countdownToSpeedUp = 100;
 
 function preload(a) {
     // init
-    game.load.script('gray-filter', 'src/filters/GrayFilter.js');
-    game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
+    filters.load();
 
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
     game.load.image('diamond', 'assets/diamond.png');
     game.load.spritesheet('dude', 'assets/cora-run.png', 70, 100 );
-    
+
     //dia
     game.load.image('dia-mountain-lvl-1', 'assets/background/dia/mountain-lvl-1.png');
     game.load.image('dia-mountain-lvl-2', 'assets/background/dia/mountain-lvl-2.png');
@@ -71,11 +70,10 @@ function create() {
     filters.init();
     levels.init(game.level);
     platforms.init();
-    player.init();    
+    player.init();
 
     // wtf gambi, mas funciona
     game.stage._stage.children[0].filters = filters.all;
-
 
     // platforms.group = game.add.group();
     /*ground = platforms.group.create(-50, game.world.height - 64, 'ground');
@@ -92,20 +90,17 @@ function restart() {
 }
 
 function update() {
-
-
     // always on top
     game.physics.collide(player.instance, platforms.platformsGroup);
     game.physics.collide(player.instance, platforms.obstaclesGroup);
-
 
     filters.update();
     parallax.update();
     player.update();
 
     //ground.body.velocity.x = -worldVelocity;
-    platforms.refreshPosition();
-    collector.refreshPosition();
+    platforms.update();
+    collector.update();
 
     //filter.update();
 

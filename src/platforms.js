@@ -3,9 +3,9 @@ var platforms = {
 	obstacles: [],
 	// array de plataformas
 	grounds: [],
-	// 
+	//
 	platformsGroup: null,
-	// 
+	//
 	obstaclesGroup: null,
 	// step da largura da plataforma
 	tileWidth: 100,
@@ -136,7 +136,7 @@ var platforms = {
 	},
 
 	// Função de enterFrame
-	refreshPosition: function()
+	update: function()
 	{
 		this.platformsGroup.x -= worldVelocity;
 		this.obstaclesGroup.x -= worldVelocity;
