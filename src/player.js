@@ -8,13 +8,13 @@ var player = {
   energies: { 'green': 0.5, 'blue': 0, 'red': 0 },
 
 	init:function(){
-		this.instance = game.add.sprite(100, 0, 'dude');
+		this.instance = game.add.sprite(100, 0, 'cora');
 		this.instance.body.bounce.y = 0;
 		this.instance.body.gravity.y = 17;
 		this.instance.body.collideWorldBounds = false;
 
 		//this.instance.animations.add('left', [0,1,2,3,4,5,6,7,8,9,10], 20, true);
-		this.instance.animations.add('right', [0,1,2,3,4,5,6,7,8,9], 16, true);
+		this.instance.animations.add('right', [0,1,2,3,4,5,6,7,8,9,10,11], 12, true);
 		this.instance.events.onOutOfBounds.add(this.onOutOfBounds);
 	},
 
