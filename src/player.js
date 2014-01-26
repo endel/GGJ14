@@ -13,7 +13,6 @@ var player = {
 		//this.instance.animations.add('left', [0,1,2,3,4,5,6,7,8,9,10], 20, true);
 		this.instance.animations.add('right', [0,1,2,3,4,5,6,7,8,9], 20, true);
 		this.instance.events.onOutOfBounds.add(this.onOutOfBounds);
-
 	},
 
   onOutOfBounds: function() {

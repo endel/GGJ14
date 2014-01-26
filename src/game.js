@@ -13,12 +13,29 @@ function preload(a) {
     game.load.image('star', 'assets/star.png');
     game.load.image('diamond', 'assets/diamond.png');
     game.load.spritesheet('dude', 'assets/cora-run.png', 70, 100 );
+    
+    //dia
     game.load.image('dia-mountain-lvl-1', 'assets/background/dia/mountain-lvl-1.png');
     game.load.image('dia-mountain-lvl-2', 'assets/background/dia/mountain-lvl-2.png');
     game.load.image('dia-mountain-lvl-3', 'assets/background/dia/mountain-lvl-3.png');
     game.load.image('dia-lake-forest', 'assets/background/dia/lake-forest.png');
     game.load.image('dia-sky', 'assets/background/dia/sky.png');
-    // game.load.image('dia-cloud-front', 'assets/background/dia/cloud-front.png');
+
+    //tarde
+    game.load.image('tarde-mountain-lvl-1', 'assets/background/tarde/mountain-lvl-1.png');
+    game.load.image('tarde-mountain-lvl-2', 'assets/background/tarde/mountain-lvl-2.png');
+    game.load.image('tarde-mountain-lvl-3', 'assets/background/tarde/mountain-lvl-3.png');
+    game.load.image('tarde-lake-forest', 'assets/background/tarde/lake-forest.png');
+    game.load.image('tarde-sky', 'assets/background/tarde/sky.png');
+    game.load.image('tarde-cloud-front', 'assets/background/tarde/cloud-front.png');
+
+    //noite
+    game.load.image('noite-mountain-lvl-1', 'assets/background/noite/mountain-lvl-1.png');
+    game.load.image('noite-mountain-lvl-2', 'assets/background/noite/mountain-lvl-2.png');
+    game.load.image('noite-mountain-lvl-3', 'assets/background/noite/mountain-lvl-3.png');
+    game.load.image('noite-lake-forest', 'assets/background/noite/lake-forest.png');
+    game.load.image('noite-sky', 'assets/background/noite/sky.png');
+    game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
 
     game.load.image('platform1-1', 'assets/platforms/platform1-1.png');
     game.load.image('platform1-2', 'assets/platforms/platform1-2.png');
@@ -39,8 +56,7 @@ function create() {
     filters.init();
     levels.init(game.level);
     platforms.init();
-    player.init();
-    parallax.init();
+    player.init();    
 
     // wtf gambi, mas funciona
     game.stage._stage.children[0].filters = filters.all;
