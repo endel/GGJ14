@@ -19,12 +19,6 @@ var sound = {
     this.highvoices.play('', 0, 0, true);
   },
 
-  update: function() {
-    if (this.playbackRate == this.lastPlaybackRate) {
-      return;
-    }
-  },
-
   setLevel: function(level) {
     switch(level) {
       case 1:

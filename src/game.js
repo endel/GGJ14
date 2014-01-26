@@ -106,6 +106,7 @@ function create() {
 }
 
 function restart() {
+  console.log("Restart...");
 }
 
 function update() {
@@ -113,11 +114,10 @@ function update() {
     game.physics.collide(player.instance, platforms.platformsGroup, platforms.platformCollided);
     game.physics.overlap(player.instance, platforms.obstaclesGroup, platforms.obstacleCollided);
 
-    sound.update();
+    // sound.update();
     filters.update();
     parallax.update();
 
-    //ground.body.velocity.x = -worldVelocity;
     platforms.update();
     collector.update();
     player.update();
