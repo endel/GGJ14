@@ -14,6 +14,7 @@ var player = {
 
   init:function(){
   	this.instance = game.add.sprite(100, 0, 'cora');
+  	this.instance.name = 'player';
   	this.instance.body.bounce.y = 0;
   	this.instance.body.gravity.y = 17;
   	this.instance.body.collideWorldBounds = false;

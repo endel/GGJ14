@@ -115,7 +115,7 @@ var platforms = {
 
 	insertObstacle: function(x, y, size)
 	{
-		var collideSprite, visibleSprite, textureName;
+		var sprite, textureName;
 
 		size = (size == undefined)?'small':size;
 
@@ -129,12 +129,14 @@ var platforms = {
 				textureName = size + 'Obstacle3-1';
 				break;
 		}
-		visibleSprite = game.add.sprite(x, y, textureName);
-		//visibleSprite.body.immovable = true;
-		visibleSprite.y -= (visibleSprite.height/2);
-		//visibleSprite.body.setSize(visibleSprite.width, visibleSprite.height / 2, 0, (visibleSprite.height / 2)/2);
-		this.obstaclesGroup.add(visibleSprite);
-		this.obstacles.push(visibleSprite);
+		sprite = game.add.sprite(x, y, textureName);
+		sprite.name = 'obstacle';
+		sprite.body.customSeparateX = true;
+		//sprite.body.immovable = true;
+		sprite.y -= (sprite.height/2);
+		//sprite.body.setSize(sprite.width, sprite.height / 2, 0, (sprite.height / 2)/2);
+		this.obstaclesGroup.add(sprite);
+		this.obstacles.push(sprite);
 	},
 
 	// Retorna o total da largura que está sem plataformas.
@@ -201,6 +203,9 @@ var platforms = {
 
 	obstacleCollided: function(s1, s2)
 	{
+		//console.log(s1.name, s2.name)
+
+		console.log(s2.body.overlapX, s2.body.overlapY);
 		// console.log('#### OBSTACLE');
 	},
 
