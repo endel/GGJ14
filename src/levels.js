@@ -16,7 +16,7 @@ var levels = {
 		'dia-mountain-lvl-3':{
 			y:offsetY+85,
 			width:4000,
-			xRatio:.1	,
+			xRatio:1	,
 			instances:[]
 		},
 
@@ -30,21 +30,21 @@ var levels = {
 		'dia-mountain-lvl-2':{
 			y:offsetY+115,
 			width:4000,
-			xRatio:.2	,
+			xRatio:2	,
 			instances:[]
 		},
 
 		'dia-mountain-lvl-1':{
 			y:offsetY+200,
 			width:4000,
-			xRatio:.3	,
+			xRatio:3	,
 			instances:[]
 		},
 
 		'dia-lake-forest':{
 			y:offsetY+259,
 			width:4000,
-			xRatio:.5	,
+			xRatio:5	,
 			instances:[]
 		},
 
@@ -108,7 +108,7 @@ var levels = {
 		'noite-mountain-lvl-3':{
 			y:offsetY+85,
 			width:4000,
-			xRatio:.1	,
+			xRatio:.5	,
 			instances:[]
 		},
 
@@ -122,21 +122,21 @@ var levels = {
 		'noite-mountain-lvl-2':{
 			y:offsetY+115,
 			width:4000,
-			xRatio:.2	,
+			xRatio:.6	,
 			instances:[]
 		},
 
 		'noite-mountain-lvl-1':{
 			y:offsetY+200,
 			width:4000,
-			xRatio:.3	,
+			xRatio:.7	,
 			instances:[]
 		},
 
 		'noite-lake-forest':{
 			y:offsetY+259,
 			width:4000,
-			xRatio:.5	,
+			xRatio:.9	,
 			instances:[]
 		},
 
