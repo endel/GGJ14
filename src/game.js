@@ -1,5 +1,5 @@
-//var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
-var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
+var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
+// var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
     preload: preload,
     create: create,
     update: update,
@@ -11,23 +11,6 @@ var cursors;
 var worldVelocity = 4;
  
 var countdown = 1000;
-
-window.onkeypress = keypress;
-
-function keypress(e) {
-    if(e.keyCode == 112) {game.paused = !game.paused;}
-
-    if(game.paused) PRESSSPACE.style.display = 'block'; else PRESSSPACE.style.display = 'none'
-}
-
-window.addEventListener('focus',function(e){
-    keypress({keyCode:112});
-});
-
-window.addEventListener('blur',function(e){
-    keypress({keyCode:112});
-});
-
 
 function preload(a) {
     // init
@@ -123,6 +106,26 @@ function create() {
     doge.anchor.setTo(0.5,0.5);
 
     doge.filters = [filter];*/
+
+    window.onkeypress = keypress;
+
+    function keypress(e) {
+        if(e.keyCode == 112) {game.paused = !game.paused;}
+        else if(typeof e.force != 'undefined'){
+            if(e.force == 'pause') game.paused = true;
+            else if(e.force == 'unpause') game.paused = false;
+
+        }
+        if(game.paused) PRESSSPACE.style.display = 'block'; else PRESSSPACE.style.display = 'none'
+    }
+
+    window.addEventListener('focus',function(e){
+        keypress({force:'unpause'});
+    });
+
+    window.addEventListener('blur',function(e){
+        keypress({force:'pause'});
+    });
 
     STATICPRELOAD.remove();
 }
