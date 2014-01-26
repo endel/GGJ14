@@ -16,7 +16,7 @@ var player = {
 	},
  
   onOutOfBounds: function() {
-    //game.add.tween(filters.grayscale).to({ gray: 1 }, 1000).onCompleteCallback(restart).start();
+    game.add.tween(filters.grayscale).to({ gray: 1 }, 1000).onCompleteCallback(restart).start();
   },
  
 	update:function(){
