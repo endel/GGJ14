@@ -271,13 +271,13 @@ var levels = {
 
 		this.pointsLabel = function()
 		{
-			var style, label, total;
+			// var style, label, total;
 
-			style = {font: '20px "fippsregular"', fill: '#000', align: 'left'};
+			// style = {font: '20px "fippsregular"', fill: '#000', align: 'left'};
 
-			total = 0;
+			// total = 0;
 
-			label = game.add.text(10, 150, String(total), style);
+			// label = game.add.text(10, 150, String(total), style);
 
 		}
 

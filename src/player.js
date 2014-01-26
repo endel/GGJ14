@@ -138,7 +138,7 @@ var player = {
       // ONLY ENABLE PLAYER JUMP AFTER THE ENTERING STAGE BEEN COMPLETED
       if(this.keyboardEnabled){
         // JUMP
-        if (cursors.up.isDown) {
+        if (cursors.up.isDown || jumpKey.isDown) {
           this.instance.body.velocity.y = this.jumpVelocity * -1;
           this.jumpTime = game.time.now;
           this.instance.play('jump');
@@ -148,7 +148,7 @@ var player = {
 
     } else if (this.instance.animations.currentAnim.name=="jump") {
       // increase jump velocity
-      if (cursors.up.isDown && (game.time.now - this.jumpTime) < this.maxJumpTime) {
+      if ((cursors.up.isDown || jumpKey.isDown) && (game.time.now - this.jumpTime) < this.maxJumpTime) {
         this.instance.body.velocity.y -= this.jumpIncreaseRatio;
       }
     }
