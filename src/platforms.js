@@ -108,7 +108,6 @@ var platforms = {
 		visibleGround2.body.setSize(realWidth, 30, 0, 50);
 		this.platformsGroup.add(visibleGround2);
 
-
 		if(this.grounds.length == 0)
 		{
 			// funciona na máquina do Anderson, mas na minha não
@@ -138,7 +137,14 @@ var platforms = {
 
 	addObstacles: function(platformX, platformY, platformWidth)
 	{
-		this.insertObstacle((platformX + (platformWidth / 2)), platformY, 'large');
+		//this.insertObstacle((platformX + (platformWidth / 2)), platformY, 'large');
+
+		this.insertObstacleGroup(platformX, platformY);
+	},
+
+	insertObstacleGroup: function(x, y)
+	{
+
 	},
 
 	insertObstacle: function(x, y, size)

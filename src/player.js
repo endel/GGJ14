@@ -17,7 +17,7 @@ var player = {
   timeJump: null,
   minJump: 400,
   maxJump: 700,
-  maxIntervalJumpTime: 90,
+  maxIntervalJumpTime: 50,
 
   init:function(){
   	this.instance = game.add.sprite(100, 0, 'player');
