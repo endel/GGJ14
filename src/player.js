@@ -9,6 +9,8 @@ var player = {
 
   // adds score qty per color
   colorScore: { 'green': 1, 'blue': 5, 'red': 10 },
+  // adds energy qty per color
+  colorEnergy: { 'green': 0.1, 'blue': 0.05, 'red': 0.01 },
 
 	init:function(){
 		this.instance = game.add.sprite(100, 0, 'dude');
@@ -23,6 +25,10 @@ var player = {
 
   onOutOfBounds: function() {
     game.add.tween(filters.grayscale).to({ gray: 1 }, 700).onCompleteCallback(restart).start();
+  },
+
+  addEnergy: function(color) {
+    this.energies[color] += this.colorEnergy[color];
   },
 
   addScore: function(color) {
