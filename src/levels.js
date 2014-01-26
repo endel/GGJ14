@@ -3,6 +3,7 @@ var levels = {
 
 	bars: [],
 	actualGroup: null,
+	pointsLabel: null,
 	group1:{
 
 		'dia-sky':{
@@ -267,6 +268,20 @@ var levels = {
 
 			this.bars.push(obj());
 		}
+
+		this.pointsLabel = function()
+		{
+			var style, label, total;
+
+			style = {font: '20px fippsregular', fill: '#000', align: 'left'};
+
+			total = 0;
+
+			label = game.add.text(10, 150, String(total), style);
+
+		}
+
+		this.pointsLabel();
 	},
 
 	// create: function(){
