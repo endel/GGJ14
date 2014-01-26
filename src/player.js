@@ -71,6 +71,8 @@ var player = {
         previousPlaybackRate = Number(sound.playbackRate);
     game.add.tween(window).to({worldVelocity: 0}, 500).start();
 
+    game.add.tween(player.energies).to({blue: "-0.7", green: "-0.7", red: "-0.7"}, 500).start();
+
     // take sound down, and up again
     sound.setPlaybackRate(0.5, 500).onCompleteCallback(function() {
       sound.setPlaybackRate(previousPlaybackRate, 1500);
