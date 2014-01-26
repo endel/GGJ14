@@ -163,6 +163,44 @@ var levels = {
 		this.buildBars();
 	},
 
+	barsUpdate: function()
+	{
+		var bar1 = this.bars[0],
+			bar2 = this.bars[1],
+			bar3 = this.bars[2];
+
+		bar1.setEnergy(player.energies.green);
+		bar2.setEnergy(player.energies.blue);
+		bar3.setEnergy(player.energies.red);
+
+		if(bar1.getEnergy() == 0 || bar1.getEnergy() == 1)
+		{
+			bar1.setEnable(false);
+		}
+		else
+		{
+			bar1.setEnable(true);
+		}
+
+		if(bar2.getEnergy() == 0 || bar2.getEnergy() == 1)
+		{
+			bar2.setEnable(false);
+		}
+		else
+		{
+			bar2.setEnable(true);
+		}
+
+		if(bar3.getEnergy() == 0 || bar3.getEnergy() == 1)
+		{
+			bar3.setEnable(false);
+		}
+		else
+		{
+			bar3.setEnable(true);
+		}
+	},
+
 	buildBars: function()
 	{
 		var i, total = 3, obj;
@@ -171,9 +209,10 @@ var levels = {
 		{
 			obj = function()
 			{
-				var maxWidth, group, background, bar, emptyBar;
+				var maxWidth, group, background, bar, emptyBar, energy;
 				
 				maxWidth = 185;
+				energy = 0;
 
 				group = game.add.group();
 				group.x = 10;
@@ -192,6 +231,8 @@ var levels = {
 
 				setEnergy = function(i)
 				{
+					energy = i;
+
 					var width = Math.ceil(i * maxWidth / 1);
 					bar.width = width;
 
@@ -199,7 +240,10 @@ var levels = {
 					emptyBar.width = maxWidth - width;
 				}
 
-				setEnergy(i * .5);
+				getEnergy = function()
+				{
+					return energy;
+				}
 
 				setEnable = function(b)
 				{
@@ -217,7 +261,8 @@ var levels = {
 
 				return {
 					setEnable: setEnable,
-					setEnergy: setEnergy
+					setEnergy: setEnergy,
+					getEnergy: getEnergy
 				}
 			};
 			
