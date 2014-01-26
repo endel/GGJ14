@@ -1,5 +1,5 @@
-var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
-//var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
+//var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
+var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
     preload: preload,
     create: create,
     update: update,
@@ -8,7 +8,7 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 });
 
 var cursors;
-var worldVelocity = 2;
+var worldVelocity = 4;
  
 var countdown = 1000;
 
