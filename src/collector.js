@@ -50,6 +50,7 @@ var collector = {
 
 	collisionHandler: function(sprite1, sprite2)
 	{
+    sprite2.alive = false;
 
     if (sprite2.name == 'energy') {
       player.addEnergy(sprite2.color);
