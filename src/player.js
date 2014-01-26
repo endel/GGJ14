@@ -1,11 +1,14 @@
 var player = {
 
 	instance:null,
-	enabled:false,
+	keyboardEnabled:false,
 
   // scoring
   score: 0,
   energies: { 'green': 0.5, 'blue': 0, 'red': 0 },
+
+  // adds score qty per color
+  colorScore: { 'green': 1, 'blue': 5, 'red': 10 },
 
 	init:function(){
 		this.instance = game.add.sprite(100, 0, 'dude');
@@ -22,12 +25,24 @@ var player = {
     game.add.tween(filters.grayscale).to({ gray: 1 }, 700).onCompleteCallback(restart).start();
   },
 
+  addScore: function(color) {
+    this.score += this.colorScore[color];
+  },
+
 	update:function(){
+    // decrease energy types
+    var i = 1;
+    for (var type in this.energies) {
+      if (this.energies[type] > 0) {
+        this.energies[type] -= (0.001) * i;
+      }
+      i++;
+    }
 
 		this.instance.animations.play('right');
 
 		// ENTERING THE STAGE
-		if(!this.enabled){
+		if(!this.keyboardEnabled){
 
 			if(this.instance.body.x < 50) {
 	        this.instance.body.velocity.x = 90;
@@ -36,14 +51,14 @@ var player = {
 	        this.instance.body.velocity.x = 100 - (this.instance.body.x);
 		    } else {
 	        this.instance.body.velocity.x = 0;
-          this.enabled = true;
+          this.keyboardEnabled = true;
 		    }
 
 		}
 
 
     // ONLY ENABLE PLAYER JUMP AFTER THE ENTERING STAGE BEEN COMPLETED
-    if(this.enabled){
+    if(this.keyboardEnabled){
 
     	 // JUMP
     	if (cursors.up.isDown && this.instance.body.touching.down)

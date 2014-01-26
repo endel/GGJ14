@@ -30,6 +30,8 @@ var collector = {
     }
 
 		sprite = game.add.sprite(x, y, type + '-' + color);
+    sprite.name = type;
+    sprite.color = color;
 
     var frames = [];
     for (var i = 0, l = numFrames; i < l; i ++) {
@@ -47,6 +49,13 @@ var collector = {
 
 	collisionHandler: function(sprite1, sprite2)
 	{
+
+    if (sprite2.name == 'energy') {
+      player.addEnergy(sprite2.color);
+    } else if (sprite2.name == 'point') {
+      player.addScore(sprite2.color);
+    }
+
     game.add.tween(sprite2).to({alpha: 0}, 200).onCompleteCallback(function() {
       sprite2.kill();
     }).start();
