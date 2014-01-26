@@ -15,9 +15,9 @@ var filters = {
     filters.noise = game.add.filter('NoiseFilter', game.width, game.height);
     // filters.rgb_split = game.add.filter('RGBSplitFilter', game.width, game.height);
 
-    this.all = [filters.grayscale, filters.color_reducer];
+    // this.all = [filters.grayscale, filters.color_reducer];
     // this.all = [filters.grayscale, filters.color_reducer, filters.rgb_split];
-    // this.all = [filters.grayscale, filters.color_reducer, filters.noise];
+    this.all = [filters.grayscale, filters.color_reducer, filters.noise];
     // this.all = [];
   },
 

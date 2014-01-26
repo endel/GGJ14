@@ -94,7 +94,6 @@ function update() {
     // always on top
     game.physics.collide(player.instance, platforms.platformsGroup);
 
-
     filters.update();
     parallax.update();
     player.update();
