@@ -201,7 +201,7 @@ var platforms = {
 
 	obstacleCollided: function(s1, s2)
 	{
-		console.log('#### OBSTACLE');
+		// console.log('#### OBSTACLE');
 	},
 
 	platformCollided: function(s1, s2)

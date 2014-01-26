@@ -22,16 +22,17 @@ var collector = {
 				break;
 		}
 
+		sprite = game.add.sprite(x, y, type + '-' + color);
+    sprite.name = type;
+    sprite.color = color;
+
     switch(type) {
       case 'point':
+        sprite.
         break;
       case 'energy':
         break;
     }
-
-		sprite = game.add.sprite(x, y, type + '-' + color);
-    sprite.name = type;
-    sprite.color = color;
 
     var frames = [];
     for (var i = 0, l = numFrames; i < l; i ++) {

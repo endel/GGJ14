@@ -24,7 +24,11 @@ var player = {
 	},
 
   onOutOfBounds: function() {
-    game.add.tween(filters.grayscale).to({ gray: 1 }, 700).onCompleteCallback(restart).start();
+    game.add.tween(player.energies).to({
+      green: 0,
+      blue: 0,
+      red: 0
+    }, 700).onCompleteCallback(restart).start();
   },
 
   addEnergy: function(color) {
@@ -40,7 +44,7 @@ var player = {
     var i = 1;
     for (var type in this.energies) {
       if (this.energies[type] > 0) {
-        this.energies[type] -= (0.001) * i;
+        this.energies[type] -= (0.0005) * i;
       }
       i++;
     }
