@@ -33,6 +33,7 @@ var player = {
 
 	addEnergy: function(color) {
 		this.energies[color] += this.colorEnergy[color];
+		this.energies[color] = (this.energies[color] > 1)?1:this.energies[color];
 	},
 
 	addScore: function(color) {
