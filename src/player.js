@@ -52,8 +52,15 @@ var player = {
 	},
 
   kill: function() {
-    var previousWorldVelocity = worldVelocity;
+    var previousWorldVelocity = worldVelocity,
+        previousPlaybackRate = Number(sound.playbackRate);
     game.add.tween(window).to({worldVelocity: 0}, 500).start();
+
+    // take sound down, and up again
+    sound.setPlaybackRate(0.5, 500).onCompleteCallback(function() {
+      console.log("On complete!", sound.lastPlaybackRate);
+      sound.setPlaybackRate(previousPlaybackRate, 1500);
+    });
 
     this.instance.play('collide');
     setTimeout(function() {
