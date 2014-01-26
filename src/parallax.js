@@ -54,7 +54,7 @@ var parallax = {
 				if(this.actualGroup[x].instances[y].body.x < -this.actualGroup[x].width)
 					this.actualGroup[x].instances[y].body.x = this.actualGroup[x].instances[altY].body.x + this.actualGroup[x].width;
 
-    			this.actualGroup[x].instances[y].body.velocity.x = -worldVelocity*this.actualGroup[x].xRatio;
+    			this.actualGroup[x].instances[y].body.velocity.x = -Math.ceil(worldVelocity*this.actualGroup[x].xRatio);
 
 			}
 
