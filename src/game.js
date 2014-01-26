@@ -16,9 +16,7 @@ function preload(a) {
     filters.load();
 
     // sounds
-    game.load.audio('sound-base', 'assets/songs/base.mp3');
-    game.load.audio('sound-basssynths', 'assets/songs/basssynths.mp3');
-    game.load.audio('sound-highvoices', 'assets/songs/highvoices.mp3');
+    sound.load();
 
     // spritesheets
     game.load.atlas('player', 'assets/player.png', 'assets/player.json');
@@ -89,11 +87,13 @@ function create() {
     game.level = 1;
     cursors = game.input.keyboard.createCursorKeys();
 
+    sound.init();
     filters.init();
     levels.init(game.level);
     platforms.init();
     player.init();
     levels.buildBars();
+
     // platforms.group = game.add.group();
     /*ground = platforms.group.create(-50, game.world.height - 64, 'ground');
     ground.body.immovable = true;*/
@@ -108,6 +108,7 @@ function create() {
 }
 
 function restart() {
+  console.log("Restart...");
 }
 
 function update() {
@@ -115,10 +116,10 @@ function update() {
     game.physics.collide(player.instance, platforms.platformsGroup, platforms.platformCollided);
     game.physics.overlap(player.instance, platforms.obstaclesGroup, platforms.obstacleCollided);
 
+    // sound.update();
     filters.update();
     parallax.update();
 
-    //ground.body.velocity.x = -worldVelocity;
     platforms.update();
     collector.update();
     player.update();
