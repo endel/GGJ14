@@ -84,7 +84,7 @@ var platforms = {
 		this.platformsGroup.add(visibleGround2);
 
     	// ground.filters = filters.all;
-		//collector.addObject(1, (currX + (currWidth / 2)) - 100, tileY);
+		collector.addObject(1, (currX + (currWidth / 2)) - 100, tileY);
 
 		this.insertObstacle((currX + (currWidth / 2)), tileY, 'large');
 
@@ -122,9 +122,9 @@ var platforms = {
 				break;
 		}
 		visibleSprite = game.add.sprite(x, y, textureName);
-		visibleSprite.body.immovable = true;
+		//visibleSprite.body.immovable = true;
 		visibleSprite.y -= (visibleSprite.height/2);
-		visibleSprite.body.setSize(visibleSprite.width, visibleSprite.height / 2, 0, (visibleSprite.height / 2)/2);
+		//visibleSprite.body.setSize(visibleSprite.width, visibleSprite.height / 2, 0, (visibleSprite.height / 2)/2);
 		this.obstaclesGroup.add(visibleSprite);
 		this.obstacles.push(visibleSprite);
 	},
@@ -189,5 +189,15 @@ var platforms = {
 				game.debug.renderRectangle(obstacle.body);
 			}
 		}
+	},
+
+	obstacleCollided: function(s1, s2)
+	{
+		console.log('#### OBSTACLE');
+	},
+
+	platformCollided: function(s1, s2)
+	{
+		//console.log('#### GROUND');
 	}
 };

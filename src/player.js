@@ -1,7 +1,6 @@
 var player = {
 
 	instance:null,
-
 	enabled:false,
 
   // scoring
@@ -55,6 +54,5 @@ var player = {
     }
 
 	}
-
 
 };
