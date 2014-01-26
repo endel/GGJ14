@@ -1,38 +1,58 @@
 var collector = {
 	group: null,
 	objects: [],
-	addObject: function(level, x, y)
+
+	add: function(level, type, x, y)
 	{
+    var numFrames = 39;
+		var color, sprite;
+
 		this.createGroup();
 
-		var imageId, sprite;
 		switch(level)
 		{
 			case 1:
-				imageId = 'diamond';
+				color = 'blue';
 				break;
 			case 2:
-				imageId = 'star';
+				color = 'green';
 				break;
 			case 3:
-				imageId = 'star';
+				color = 'red';
 				break;
 		}
 
-		sprite = game.add.sprite(x, y, imageId);
-		sprite.name = imageId + this.objects.length;
-    sprite.y -= sprite.height;
+    switch(type) {
+      case 'point':
+        break;
+      case 'energy':
+        break;
+    }
+
+		sprite = game.add.sprite(x, y, type + '-' + color);
+
+    var frames = [];
+    for (var i = 0, l = numFrames; i < l; i ++) {
+      frames.push(type + '-' + color + '/' + (String("0000" + i).slice(-4)));
+    }
+
+    sprite.animations.add('default', frames, 16, true);
+    sprite.play('default');
+    sprite.anchor.setTo(0.5, 0.5);
+    sprite.y -= sprite.height / 2;
 		this.group.add(sprite);
 
 		this.objects.push(sprite);
 	},
+
 	collisionHandler: function(sprite1, sprite2)
 	{
-		console.log(sprite2.name);
-		sprite2.kill();
-
+    game.add.tween(sprite2).to({alpha: 0}, 200).onCompleteCallback(function() {
+      sprite2.kill();
+    }).start();
 		return false;
 	},
+
 	createGroup: function()
 	{
 		if(this.group == null)

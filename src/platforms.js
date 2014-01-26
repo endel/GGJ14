@@ -1,18 +1,23 @@
 var platforms = {
+
 	// array de obstaculos
 	obstacles: [],
+
 	// array de plataformas
 	grounds: [],
-	//
+
 	platformsGroup: null,
-	//
 	obstaclesGroup: null,
+
 	// step da largura da plataforma
 	tileWidth: 100,
+
 	// step da posição vertical da plataforma
 	tileY: 100,
+
 	// largura do espaço vazio entre as plataformas
 	tileInterval: 100,
+
 	// posição X para a próxima inserção de plataforma
 	nextX: 0,
 
@@ -57,6 +62,7 @@ var platforms = {
 				maxTileY = 5;
 				break;
 		}
+
 		tileSize = Math.floor(((maxTileSize + 1) - (minTileSize - 1)) * Math.random()) + minTileSize;
 		tileY = Math.floor(((maxTileY + 1) - (minTileY - 1)) * Math.random()) + minTileY;
 		tileY = tileY * this.tileY;
@@ -83,8 +89,10 @@ var platforms = {
 		visibleGround2.body.setSize(realWidth, 30, 0, 50);
 		this.platformsGroup.add(visibleGround2);
 
-    	// ground.filters = filters.all;
-		//collector.addObject(1, (currX + (currWidth / 2)) - 100, tileY);
+		collector.add(1, 'point', (currX + (currWidth / 2)) - 100 , tileY);
+		collector.add(1, 'point', (currX + (currWidth / 2))       , tileY);
+		collector.add(1, 'point', (currX + (currWidth / 2)) + 100 , tileY);
+		collector.add(1, 'energy', (currX + (currWidth / 2))      , tileY - 100);
 
 		this.insertObstacle((currX + (currWidth / 2)), tileY, 'large');
 
