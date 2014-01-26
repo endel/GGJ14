@@ -116,7 +116,7 @@ function create() {
             else if(e.force == 'unpause') game.paused = false;
 
         }
-        if(game.paused) PRESSSPACE.style.display = 'block'; else PRESSSPACE.style.display = 'none'
+        if(game.paused) PRESSP.style.display = 'block'; else PRESSP.style.display = 'none'
     }
 
     window.addEventListener('focus',function(e){
@@ -127,11 +127,15 @@ function create() {
         keypress({force:'pause'});
     });
 
-    STATICPRELOAD.remove();
+    if(typeof STATICPRELOAD != 'undefined') STATICPRELOAD.remove();
 }
 
 function restart() {
+
+
   console.log("Restart...");
+  //create();
+
 }
 
 function update() {
