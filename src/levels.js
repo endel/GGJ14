@@ -167,8 +167,8 @@ var levels = {
 			bar2 = this.bars[1],
 			bar3 = this.bars[2];
 
-		bar1.setEnergy(player.energies.green);
-		bar2.setEnergy(player.energies.blue);
+		bar1.setEnergy(player.energies.blue);
+		bar2.setEnergy(player.energies.green);
 		bar3.setEnergy(player.energies.red);
 
 		if(bar1.getEnergy() == 0 || bar1.getEnergy() == 1)
@@ -208,7 +208,7 @@ var levels = {
 			obj = function()
 			{
 				var maxWidth, group, background, bar, emptyBar, energy;
-				
+
 				maxWidth = 185;
 				energy = 0;
 
@@ -264,7 +264,7 @@ var levels = {
 					getEnergy: getEnergy
 				}
 			};
-			
+
 			this.bars.push(obj());
 		}
 	},
@@ -274,7 +274,7 @@ var levels = {
 	// },
 
 	changeLevel: function(level){
-		
+
 		switch(level){
 			case 1:
 				this.actualGroup = this.group1;

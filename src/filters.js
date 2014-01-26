@@ -1,37 +1,47 @@
 var filters = {
   all: [],
 
+  enabled: (game.renderType == Phaser.WEBGL),
+
   load: function() {
-    /*game.load.script('gray-filter', 'src/filters/GrayFilter.js');
-    game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
-    game.load.script('noise-filter', 'src/filters/NoiseFilter.js');
 
-
-    // game.load.script('rgb-split', 'src/filters/RGBSplitFilter.js');*/
+    if (this.enabled) {
+      game.load.script('gray-filter', 'src/filters/GrayFilter.js');
+      game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
+      game.load.script('noise-filter', 'src/filters/NoiseFilter.js');
+      // game.load.script('rgb-split', 'src/filters/RGBSplitFilter.js');
+    }
   },
 
-  init: function() {/*
-    // init filters
-    filters.grayscale = game.add.filter('GrayFilter', game.width, game.height);
-    filters.color_reducer = game.add.filter('ColorReducerFilter', game.width, game.height);
-    filters.noise = game.add.filter('NoiseFilter', game.width, game.height);
-    // filters.rgb_split = game.add.filter('RGBSplitFilter', game.width, game.height);
+  init: function() {
+    if (this.enabled) {
+      // init filters
+      filters.grayscale = game.add.filter('GrayFilter', game.width, game.height);
+      filters.color_reducer = game.add.filter('ColorReducerFilter', game.width, game.height);
+      filters.noise = game.add.filter('NoiseFilter', game.width, game.height);
+      // filters.rgb_split = game.add.filter('RGBSplitFilter', game.width, game.height);
 
-    filters.grayscale.update = function() {
-      this.uniforms.gray.value = 1 - player.energies['green'];
-    };
+      filters.grayscale.update = function() {
+        this.uniforms.gray.value = 1 - player.energies['green'];
+      };
 
-    // this.all = [filters.grayscale, filters.color_reducer];
-    // this.all = [filters.grayscale, filters.color_reducer, filters.rgb_split];
-    this.all = [filters.grayscale, filters.color_reducer, filters.noise];
-    // this.all = [];*/
+      // this.all = [filters.grayscale, filters.color_reducer];
+      // this.all = [filters.grayscale, filters.color_reducer, filters.rgb_split];
+      this.all = [filters.grayscale, filters.color_reducer, filters.noise];
+      // this.all = [];
+
+      // apply filters to entire stage
+      game.stage._stage.children[0].filters = filters.all;
+    }
   },
 
   update: function() {
-    /*filters.grayscale.update();
-    filters.color_reducer.update();
-    filters.noise.update();*/
-    // filters.rgb_split.update();
+    if (this.enabled) {
+      filters.grayscale.update();
+      filters.color_reducer.update();
+      filters.noise.update();
+      // filters.rgb_split.update();
+    }
   }
 
 };

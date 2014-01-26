@@ -1,4 +1,4 @@
-//var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
+// var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
     preload: preload,
     create: create,
@@ -89,10 +89,6 @@ function create() {
     platforms.init();
     player.init();
     levels.buildBars();
-
-    // wtf gambi, mas funciona
-    //game.stage._stage.children[0].filters = filters.all;
-
     // platforms.group = game.add.group();
     /*ground = platforms.group.create(-50, game.world.height - 64, 'ground');
     ground.body.immovable = true;*/

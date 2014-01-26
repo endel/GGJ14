@@ -23,8 +23,8 @@ var player = {
                                  15, true);
 		this.instance.animations.add('collide', ['menina_colidindo_01.png', 'menina_colidindo_02.png', 'menina_colidindo_03.png', 'menina_colidindo_04.png', 'menina_colidindo_05.png', 'menina_colidindo_06.png', 'menina_colidindo_07.png', 'menina_colidindo_08.png', 'menina_colidindo_09.png', 'menina_colidindo_10.png', 'menina_colidindo_11.png', 'menina_colidindo_12.png', 'menina_colidindo_13.png', 'menina_colidindo_14.png', 'menina_colidindo_15'.png],
                                  15, true);
-		this.instance.animations.add('jump', ['menina_pulando_05.png', 'menina_pulando_06.png', 'menina_pulando_07.png', 'menina_pulando_08.png'],
-                                 8, false);
+		this.instance.animations.add('jump', ['menina_pulando_05.png', 'menina_pulando_06.png', 'menina_pulando_07.png'],
+                                 10, false);
 
     // this.instance
 
