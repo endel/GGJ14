@@ -143,14 +143,15 @@ var platforms = {
 
 	addObstacles: function(platformX, platformY, platformWidth)
 	{
+
 		//this.insertObstacle((platformX + (platformWidth / 2)), platformY, 'large');
 
-		this.insertObstacleGroup(platformX, platformY, 'large', 2);
+		//this.insertObstacleGroup(platformX + (platformWidth/2), platformY, 'large', 2);
 	},
 
 	insertObstacleGroup: function(x, y, size, type)
 	{
-		var sprite1, sprite2, sprite3, sprite4, sprite5, sprite6;
+		var sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, width;
 
 		type = (type == undefined)?1:type;
 
@@ -160,6 +161,7 @@ var platforms = {
 				sprite1 = this.insertObstacle(x, y, size);
 				sprite2 = this.insertObstacle(x + sprite1.width + 10, y, size, sprite1.name);
 				sprite3 = this.insertObstacle(x + ((sprite1.width + 10) /2 ), y - 25, size, sprite1.name);
+				width = (sprite2.x + sprite2.width) - sprite1.x;
 				break;
 			case 2:
 				sprite1 = this.insertObstacle(x, y, size);
@@ -167,8 +169,11 @@ var platforms = {
 				sprite3 = this.insertObstacle(sprite2.x + sprite2.width + 10, y, size, sprite1.name);
 				sprite4 = this.insertObstacle(x + ((sprite1.width + 10) /2 ), y - 25, size, sprite1.name);
 				sprite5 = this.insertObstacle(sprite4.x + sprite1.width + 10, y - 25, size, sprite1.name);
+				width = (sprite3.x + sprite3.width) - sprite1.x;
 				break;
 		}
+
+		return width;
 	},
 
 	insertObstacle: function(x, y, size, name)
