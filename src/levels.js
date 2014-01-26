@@ -159,8 +159,6 @@ var levels = {
 		}
 
 		parallax.init(this.actualGroup);
-
-		this.buildBars();
 	},
 
 	barsUpdate: function()
@@ -250,11 +248,11 @@ var levels = {
 				{
 					if(b == true)
 					{
-						group.alpha = 1;
+						//group.alpha = 1;
 					}
 					else
 					{
-						group.alpha = .5;
+						//group.alpha = .5;
 					}
 				}
 

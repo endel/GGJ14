@@ -132,9 +132,9 @@ var platforms = {
 		sprite = game.add.sprite(x, y, textureName);
 		sprite.name = 'obstacle';
 		sprite.body.customSeparateX = true;
-		//sprite.body.immovable = true;
+		sprite.body.immovable = true;
 		sprite.y -= (sprite.height/2);
-		//sprite.body.setSize(sprite.width, sprite.height / 2, 0, (sprite.height / 2)/2);
+		sprite.body.setSize(sprite.width, sprite.height / 2, 0, (sprite.height / 2)/2);
 		this.obstaclesGroup.add(sprite);
 		this.obstacles.push(sprite);
 	},
@@ -207,12 +207,7 @@ var platforms = {
 		{
 			s2.collided = true;
 			player.kill();
-			console.log("KILL");
 		}
-		//console.log(s1.name, s2.name)
-
-		console.log(s2.body.overlapX, s2.body.overlapY);
-		// console.log('#### OBSTACLE');
 	},
 
 	platformCollided: function(s1, s2)
