@@ -232,8 +232,9 @@ var levels = {
 				setEnergy = function(i)
 				{
 					energy = i;
+					energy = (energy > 1)?1:energy;
 
-					var width = Math.ceil(i * maxWidth / 1);
+					var width = Math.ceil(energy * maxWidth / 1);
 					bar.width = width;
 
 					emptyBar.x = bar.x + bar.width;
