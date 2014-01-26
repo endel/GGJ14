@@ -22,7 +22,7 @@ var filters = {
       // filters.rgb_split = game.add.filter('RGBSplitFilter', game.width, game.height);
 
       filters.grayscale.update = function() {
-        this.uniforms.gray.value = 1 - player.energies['green'];
+        this.uniforms.gray.value = 1 - player.energies['blue'];
       };
 
       // this.all = [filters.grayscale, filters.color_reducer];

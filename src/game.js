@@ -6,11 +6,28 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
     render: render,
     debug: true
 });
-var cursors;
 
+var cursors;
 var worldVelocity = 2;
  
 var countdown = 1000;
+
+window.onkeypress = keypress;
+
+function keypress(e) {
+    if(e.keyCode == 112) {game.paused = !game.paused;}
+
+    if(game.paused) PRESSSPACE.style.display = 'block'; else PRESSSPACE.style.display = 'none'
+}
+
+window.addEventListener('focus',function(e){
+    keypress({keyCode:112});
+});
+
+window.addEventListener('blur',function(e){
+    keypress({keyCode:112});
+});
+
 
 function preload(a) {
     // init
@@ -85,11 +102,12 @@ function preload(a) {
 }
 
 function create() {
+
     game.level = 1;   
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    sound.init();
+    //sound.init();
     filters.init();
     levels.init(game.level);
     platforms.init();
@@ -105,9 +123,12 @@ function create() {
     doge.anchor.setTo(0.5,0.5);
 
     doge.filters = [filter];*/
+
+    STATICPRELOAD.remove();
 }
 
 function restart() {
+  console.log("Restart...");
 }
 
 function update() {
@@ -115,13 +136,12 @@ function update() {
     game.physics.collide(player.instance, platforms.platformsGroup, platforms.platformCollided);
     game.physics.overlap(player.instance, platforms.obstaclesGroup, platforms.obstacleCollided);
 
-    sound.update();
+    // sound.update();
     filters.update();
     parallax.update();
 
     countdown -= 1;
 
-    //ground.body.velocity.x = -worldVelocity;
     platforms.update();
     collector.update();
     player.update();

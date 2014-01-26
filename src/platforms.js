@@ -3,6 +3,12 @@ var platforms = {
 	// array de obstaculos
 	obstacles: [],
 
+	//
+	obstacleNames: [],
+
+	//
+	collidedObstacleNames: [],
+
 	// array de plataformas
 	grounds: [],
 
@@ -108,7 +114,6 @@ var platforms = {
 		visibleGround2.body.setSize(realWidth, 30, 0, 50);
 		this.platformsGroup.add(visibleGround2);
 
-
 		if(this.grounds.length == 0)
 		{
 			// funciona na máquina do Anderson, mas na minha não
@@ -138,10 +143,40 @@ var platforms = {
 
 	addObstacles: function(platformX, platformY, platformWidth)
 	{
-		this.insertObstacle((platformX + (platformWidth / 2)), platformY, 'large');
+
+		//this.insertObstacle((platformX + (platformWidth / 2)), platformY, 'large');
+
+		//this.insertObstacleGroup(platformX + (platformWidth/2), platformY, 'large', 2);
 	},
 
-	insertObstacle: function(x, y, size)
+	insertObstacleGroup: function(x, y, size, type)
+	{
+		var sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, width;
+
+		type = (type == undefined)?1:type;
+
+		switch(type)
+		{
+			case 1:
+				sprite1 = this.insertObstacle(x, y, size);
+				sprite2 = this.insertObstacle(x + sprite1.width + 10, y, size, sprite1.name);
+				sprite3 = this.insertObstacle(x + ((sprite1.width + 10) /2 ), y - 25, size, sprite1.name);
+				width = (sprite2.x + sprite2.width) - sprite1.x;
+				break;
+			case 2:
+				sprite1 = this.insertObstacle(x, y, size);
+				sprite2 = this.insertObstacle(x + sprite1.width + 10, y, size, sprite1.name);
+				sprite3 = this.insertObstacle(sprite2.x + sprite2.width + 10, y, size, sprite1.name);
+				sprite4 = this.insertObstacle(x + ((sprite1.width + 10) /2 ), y - 25, size, sprite1.name);
+				sprite5 = this.insertObstacle(sprite4.x + sprite1.width + 10, y - 25, size, sprite1.name);
+				width = (sprite3.x + sprite3.width) - sprite1.x;
+				break;
+		}
+
+		return width;
+	},
+
+	insertObstacle: function(x, y, size, name)
 	{
 		var sprite, textureName;
 
@@ -158,13 +193,20 @@ var platforms = {
 				break;
 		}
 		sprite = game.add.sprite(x, y, textureName);
-		sprite.name = 'obstacle';
+		sprite.name = (name)?name:'obstacle' + this.obstacleNames.length;
 		sprite.body.customSeparateX = true;
 		sprite.body.immovable = true;
 		sprite.y -= (sprite.height/2);
 		sprite.body.setSize(sprite.width, sprite.height / 2, 0, (sprite.height / 2)/2);
 		this.obstaclesGroup.add(sprite);
 		this.obstacles.push(sprite);
+
+		if(this.obstacleNames.indexOf(sprite.name) == -1)
+		{
+			this.obstacleNames.push(sprite.name);
+		}
+
+		return sprite;
 	},
 
 	// Retorna o total da largura que está sem plataformas.
@@ -234,8 +276,12 @@ var platforms = {
 	{
 		if(s2.alive)
 		{
-      s2.alive = false;
-			player.kill();
+			if(platforms.collidedObstacleNames.length == 0 || platforms.collidedObstacleNames.indexOf(s2.name) == -1)
+			{
+				platforms.collidedObstacleNames.push(s2.name);
+	      		s2.alive = false;
+				player.kill();
+			}
 		}
 	},
 

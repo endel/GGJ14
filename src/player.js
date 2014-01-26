@@ -13,17 +13,17 @@ var player = {
   // adds energy qty per color
   colorEnergy: { 'blue': 0.1, 'green': 0.05, 'red': 0.01 },
 
-  // tempo para o pulo
-  timeJump: null,
-  minJump: 400,
-  maxJump: 700,
-  maxIntervalJumpTime: 90,
+  // jump variables
+  jumpVelocity: 300,
+  jumpTime: 0,
+  maxJumpTime: 150,
+  jumpIncreaseRatio: 50,
 
   init:function(){
   	this.instance = game.add.sprite(100, 0, 'player');
   	this.instance.name = 'player';
   	this.instance.body.bounce.y = 0;
-  	this.instance.body.gravity.y = 17;
+  	this.instance.body.gravity.y = 20;
   	this.instance.body.collideWorldBounds = false;
 
 		this.instance.animations.add('right', ['sprites_01.png', 'sprites_02.png', 'sprites_03.png', 'sprites_04.png', 'sprites_05.png', 'sprites_06.png', 'sprites_07.png', 'sprites_08.png', 'sprites_09.png', 'sprites_10'.png],
@@ -41,6 +41,9 @@ var player = {
 	},
 
 	onOutOfBounds: function() {
+    // take sound down, and up again
+    sound.setPlaybackRate(0.1, 500);
+
 		game.add.tween(player.energies).to({
 			green: 0,
 			blue: 0,
@@ -63,11 +66,12 @@ var player = {
     game.add.tween(window).to({worldVelocity: 0}, 500).start();
 
     // take sound down, and up again
-    sound.setPlaybackRate(0.5, 500).onCompleteCallback(function() {
-      console.log("On complete!", sound.lastPlaybackRate);
-      sound.setPlaybackRate(previousPlaybackRate, 1500);
-    });
-
+    if(sound.initialized == true)
+    {
+      sound.setPlaybackRate(0.5, 500).onCompleteCallback(function() {
+        sound.setPlaybackRate(previousPlaybackRate, 1500);
+      });
+    }
     this.instance.play('collide');
     setTimeout(function() {
       worldVelocity = previousWorldVelocity;
@@ -108,29 +112,19 @@ var player = {
       // ONLY ENABLE PLAYER JUMP AFTER THE ENTERING STAGE BEEN COMPLETED
       if(this.keyboardEnabled){
         // JUMP
-        if (cursors.up.isDown && !this.timeJump) {
-          this.timeJump = new Date().getTime();
-        }
-
-        if(this.timeJump)
-        {
-          var currInterval = new Date().getTime() - this.timeJump,
-            currJump;
-
-          if(cursors.up.isUp || currInterval > this.maxIntervalJumpTime) {
-            currInterval = (currInterval > this.maxIntervalJumpTime)?this.maxIntervalJumpTime:currInterval;
-            console.log(currInterval);
-            this.timeJump = null;
-            this.instance.play('jump');
-
-            currJump = (currInterval * this.maxJump / this.maxIntervalJumpTime);
-            currJump = (currJump < this.minJump)?this.minJump:currJump;
-            this.instance.body.velocity.y = currJump * -1;
-          }
+        if (cursors.up.isDown) {
+          this.instance.body.velocity.y = this.jumpVelocity * -1;
+          this.jumpTime = game.time.now;
+          this.instance.play('jump');
         }
 
       }
 
+    } else if (this.instance.animations.currentAnim.name=="jump") {
+      // increase jump velocity
+      if (cursors.up.isDown && (game.time.now - this.jumpTime) < this.maxJumpTime) {
+        this.instance.body.velocity.y -= this.jumpIncreaseRatio;
+      }
     }
   }
 

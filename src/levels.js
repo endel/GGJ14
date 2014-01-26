@@ -273,7 +273,7 @@ var levels = {
 		{
 			var style, label, total;
 
-			style = {font: '20px fippsregular', fill: '#000', align: 'left'};
+			style = {font: '20px "fippsregular"', fill: '#000', align: 'left'};
 
 			total = 0;
 
