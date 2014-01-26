@@ -26,7 +26,6 @@ function preload(a) {
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
     game.load.image('diamond', 'assets/diamond.png');
-    game.load.spritesheet('dude', 'assets/cora-run.png', 70, 100 );
 
     //dia
     game.load.image('dia-mountain-lvl-1', 'assets/background/dia/mountain-lvl-1.png');
@@ -74,6 +73,9 @@ function preload(a) {
     game.load.image('smallObstacle1', 'assets/platforms/smallObstacle1.png');
     game.load.image('smallObstacle3-1', 'assets/platforms/smallObstacle3-1.png');
     game.load.image('smallObstacle3-2', 'assets/platforms/smallObstacle3-2.png');
+
+    //player
+    game.load.spritesheet('cora', 'assets/cora-run.png', 70, 100);
 }
 
 function create() {
