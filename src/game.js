@@ -14,6 +14,11 @@ function preload(a) {
     // init
     filters.load();
 
+    // sounds
+    game.load.audio('sound-base', 'assets/songs/base.mp3');
+    game.load.audio('sound-basssynths', 'assets/songs/basssynths.mp3');
+    game.load.audio('sound-highvoices', 'assets/songs/highvoices.mp3');
+
     // spritesheets
     game.load.atlas('player', 'assets/player.png', 'assets/player.json');
 
