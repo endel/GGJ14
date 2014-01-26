@@ -1,7 +1,7 @@
-var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', { 
-//var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', { 
-    preload: preload, 
-    create: create, 
+var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
+//var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
+    preload: preload,
+    create: create,
     update: update,
     render: render,
     debug: true
@@ -20,7 +20,7 @@ function preload(a) {
     game.load.image('star', 'assets/star.png');
     game.load.image('diamond', 'assets/diamond.png');
     game.load.spritesheet('dude', 'assets/cora-run.png', 70, 100 );
-    
+
     //dia
     game.load.image('dia-mountain-lvl-1', 'assets/background/dia/mountain-lvl-1.png');
     game.load.image('dia-mountain-lvl-2', 'assets/background/dia/mountain-lvl-2.png');
@@ -70,7 +70,7 @@ function create() {
     filters.init();
     levels.init(game.level);
     platforms.init();
-    player.init();    
+    player.init();
 
     // wtf gambi, mas funciona
     game.stage._stage.children[0].filters = filters.all;
@@ -91,10 +91,8 @@ function restart() {
 }
 
 function update() {
-
-
     // always on top
-    //game.physics.collide(player.instance, platforms.platformsGroup);
+    game.physics.collide(player.instance, platforms.platformsGroup);
 
 
     filters.update();

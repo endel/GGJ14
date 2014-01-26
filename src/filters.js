@@ -12,7 +12,7 @@ var filters = {
     // init filters
     filters.grayscale = game.add.filter('GrayFilter', game.width, game.height);
     filters.color_reducer = game.add.filter('ColorReducerFilter', game.width, game.height);
-    // filters.noise = game.add.filter('NoiseFilter', game.width, game.height);
+    filters.noise = game.add.filter('NoiseFilter', game.width, game.height);
     // filters.rgb_split = game.add.filter('RGBSplitFilter', game.width, game.height);
 
     this.all = [filters.grayscale, filters.color_reducer];
@@ -24,7 +24,7 @@ var filters = {
   update: function() {
     filters.grayscale.update();
     filters.color_reducer.update();
-    // filters.noise.update();
+    filters.noise.update();
     // filters.rgb_split.update();
   }
 
