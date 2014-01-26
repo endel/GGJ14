@@ -142,7 +142,6 @@ var levels = {
 	},
 
 	init: function(level){
-		console.log("level control");
 
 		switch(level){
 			case 1:
@@ -192,11 +191,10 @@ var levels = {
 	},
 
 	// create: function(){
-
 	// },
 
 	changeLevel: function(level){
-		
+
 		switch(level){
 			case 1:
 				this.actualGroup = this.group1;
@@ -213,9 +211,6 @@ var levels = {
 
 		parallax.replaceGroupChild(this.actualGroup);
 
-	},
-
-	objectCollected: function(obj){
-		console.log(obj)
 	}
+
 };
