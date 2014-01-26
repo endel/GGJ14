@@ -132,9 +132,9 @@ var platforms = {
 		sprite = game.add.sprite(x, y, textureName);
 		sprite.name = 'obstacle';
 		sprite.body.customSeparateX = true;
-		//sprite.body.immovable = true;
+		sprite.body.immovable = true;
 		sprite.y -= (sprite.height/2);
-		//sprite.body.setSize(sprite.width, sprite.height / 2, 0, (sprite.height / 2)/2);
+		sprite.body.setSize(sprite.width, sprite.height / 2, 0, (sprite.height / 2)/2);
 		this.obstaclesGroup.add(sprite);
 		this.obstacles.push(sprite);
 	},

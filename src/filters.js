@@ -4,6 +4,7 @@ var filters = {
   enabled: (game.renderType == Phaser.WEBGL),
 
   load: function() {
+
     if (this.enabled) {
       game.load.script('gray-filter', 'src/filters/GrayFilter.js');
       game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
