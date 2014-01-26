@@ -1,5 +1,5 @@
 var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
-// var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
+//var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
     preload: preload,
     create: create,
     update: update,
@@ -9,11 +9,18 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 var cursors;
 
 var worldVelocity = 2;
-var countdownToSpeedUp = 100;
 
 function preload(a) {
     // init
     filters.load();
+
+    // energies
+    game.load.atlas('energy-blue', 'assets/items/energy-blue.png', 'assets/items/energy-blue.json');
+    game.load.atlas('point-blue', 'assets/items/point-blue.png', 'assets/items/point-blue.json');
+    game.load.atlas('energy-green', 'assets/items/energy-green.png', 'assets/items/energy-green.json');
+    game.load.atlas('point-green', 'assets/items/point-green.png', 'assets/items/point-green.json');
+    game.load.atlas('energy-red', 'assets/items/energy-red.png', 'assets/items/energy-red.json');
+    game.load.atlas('point-red', 'assets/items/point-red.png', 'assets/items/point-red.json');
 
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
@@ -91,27 +98,20 @@ function restart() {
 
 function update() {
     // always on top
-    game.physics.collide(player.instance, platforms.platformsGroup);
-    game.physics.collide(player.instance, platforms.obstaclesGroup);
+    game.physics.collide(player.instance, platforms.platformsGroup, platforms.platformCollided);
+    game.physics.overlap(player.instance, platforms.obstaclesGroup, platforms.obstacleCollided);
 
     filters.update();
     parallax.update();
-    player.update();
 
     //ground.body.velocity.x = -worldVelocity;
     platforms.update();
     collector.update();
+    player.update();
 
-    //filter.update();
-
-    // PROTOTYPE SPEEDUP -- REMOVE WHEN CORRECT SPEEDUP IMPLEMENTED --
-    /*countdownToSpeedUp--;
-    if(countdownToSpeedUp <= 0) {
-        countdownToSpeedUp = 100;
-        worldVelocity++;
-    }*/
 }
 
 function render() {
     platforms.debugBoundingBoxes();
 }
+

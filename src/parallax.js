@@ -4,46 +4,9 @@ var parallax = {
 
 	group: null,
 	newGroup: null,
+
 	// a:null,
 	actualGroup: null,
-// 	ar:{
-// 		'dia-sky':{
-// 			y:0,
-// 			width:4000,
-// 			xRatio:0	,
-// 			instances:[]
-// 		},
-// 		'dia-mountain-lvl-3':{
-// 			y:offsetY+85,
-// 			width:4000,
-// 			xRatio:.1	,
-// 			instances:[]
-// 		},
-// 		'dia-cloud-front':{
-// 			y:offsetY+0,
-// 			width:4000,
-// 			xRatio:.15	,
-// 			instances:[]
-// 		},
-// 		'dia-mountain-lvl-2':{
-// 			y:offsetY+115,
-// 			width:4000,
-// 			xRatio:.2	,
-// 			instances:[]
-// 		},
-// 		'dia-mountain-lvl-1':{
-// 			y:offsetY+200,
-// 			width:4000,
-// 			xRatio:.3	,
-// 			instances:[]
-// 		},
-// 		'dia-lake-forest':{
-// 			y:offsetY+259,
-// 			width:4000,
-// 			xRatio:.5	,
-// 			instances:[]
-// 		},
-// 	},
 
 	init:function(group){
 		this.group = game.add.group();
@@ -60,7 +23,6 @@ var parallax = {
     		}
 
     	}
-
     	// debugger;
 
 	},
@@ -73,12 +35,10 @@ var parallax = {
 
     		newChild[x].instances.push(this.group.create(0, newChild[x].y, x));
     		newChild[x].instances[0].body.immovable = true;
-    		// newChild[x].instances[0].filters = filters.all;
 
     		if(newChild[x].xRatio > 0){
     			newChild[x].instances.push(this.group.create(newChild[x].width, newChild[x].y, x));
     			newChild[x].instances[1].body.immovable = true;
-          // this.ar[x].instances[1].filters = filters.all;
     		}
 
     	}
