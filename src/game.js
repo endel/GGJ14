@@ -8,8 +8,24 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 });
 
 var cursors;
-
 var worldVelocity = 2;
+
+window.onkeypress = keypress;
+
+function keypress(e) {
+    if(e.keyCode == 112) {game.paused = !game.paused;}
+
+    if(game.paused) PRESSSPACE.style.display = 'block'; else PRESSSPACE.style.display = 'none'
+}
+
+window.addEventListener('focus',function(e){
+    keypress({keyCode:112});
+});
+
+window.addEventListener('blur',function(e){
+    keypress({keyCode:112});
+});
+
 
 function preload(a) {
     // init
