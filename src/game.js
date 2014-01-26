@@ -44,6 +44,13 @@ function preload(a) {
     game.load.image('noite-sky', 'assets/background/noite/sky.png');
     game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
 
+    // bars
+    game.load.image('bar1', 'assets/bars/bar1.gif');
+    game.load.image('bar2', 'assets/bars/bar2.gif');
+    game.load.image('bar3', 'assets/bars/bar3.gif');
+    game.load.image('emptyBar', 'assets/bars/emptyBar.gif');
+    game.load.image('backgroundBar', 'assets/bars/background.png');
+
     // platform
     game.load.image('platform1-1', 'assets/platforms/platform1-1.png');
     game.load.image('platform1-2', 'assets/platforms/platform1-2.png');

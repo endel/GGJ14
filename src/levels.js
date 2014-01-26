@@ -1,6 +1,7 @@
 var offsetY = 17;
 var levels = {
 
+	bars: [],
 	actualGroup: null,
 	group1:{
 
@@ -157,7 +158,37 @@ var levels = {
 			break;
 		}
 
+		this.buildBars();
+
 		parallax.init(this.actualGroup);
+	},
+
+	buildBars: function()
+	{
+		var i, total = 3, obj;
+
+		for(i = 0; i < total; ++i)
+		{
+			/*obj = {};
+			obj.maxWidth = 185;
+
+			obj.group = game.add.group();
+			obj.group.x = 10;
+			obj.group.y = (10 + (30 * i));
+
+			obj.background = game.add.sprite(0, 0, 'backgroundBar');
+			obj.group.add(obj.background);
+
+			obj.bar = game.add.sprite(6, 5, 'bar' + (i + 1));
+			obj.bar.width = 0;
+			obj.group.add(obj.bar);
+
+			obj.emptyBar = game.add.sprite(6, 5, 'emptyBar');
+			obj.width = obj.maxWidth;
+			obj.group.add(obj.maxWidth);*/
+
+			this.bars.push(obj);
+		}
 	},
 
 	// create: function(){

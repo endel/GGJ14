@@ -22,6 +22,11 @@ var player = {
     game.add.tween(filters.grayscale).to({ gray: 1 }, 700).onCompleteCallback(restart).start();
   },
 
+  addEnergy: function(type, qty)
+  {
+
+  },
+
 	update:function(){
 
 		this.instance.animations.play('right');
