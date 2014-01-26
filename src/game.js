@@ -6,8 +6,7 @@ var countdownToSpeedUp = 100;
 
 function preload(a) {
     // init
-    game.load.script('gray-filter', 'src/filters/GrayFilter.js');
-    game.load.script('color-reducer-filter', 'src/filters/ColorReducerFilter.js');
+    filters.load();
 
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
