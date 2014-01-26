@@ -6,6 +6,7 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
     render: render,
     debug: true
 });
+
 var cursors;
 
 var worldVelocity = 2;
@@ -84,7 +85,6 @@ function preload(a) {
 
 function create() {
     game.level = 1;
-
     cursors = game.input.keyboard.createCursorKeys();
 
     //sound.init();
@@ -103,9 +103,12 @@ function create() {
     doge.anchor.setTo(0.5,0.5);
 
     doge.filters = [filter];*/
+
+    STATICPRELOAD.remove();
 }
 
 function restart() {
+  console.log("Restart...");
 }
 
 function update() {
@@ -113,11 +116,10 @@ function update() {
     game.physics.collide(player.instance, platforms.platformsGroup, platforms.platformCollided);
     game.physics.overlap(player.instance, platforms.obstaclesGroup, platforms.obstacleCollided);
 
-    sound.update();
+    // sound.update();
     filters.update();
     parallax.update();
 
-    //ground.body.velocity.x = -worldVelocity;
     platforms.update();
     collector.update();
     player.update();

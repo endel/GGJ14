@@ -22,13 +22,9 @@ var sound = {
     this.highvoices.play('', 0, 0, true);
   },
 
-  update: function() {
-    if (this.playbackRate == this.lastPlaybackRate) {
-      return;
-    }
-  },
-
   setLevel: function(level) {
+    if(this.initialized == false) {return null;}
+    
     switch(level) {
       case 1:
         game.add.tween(this.base).to({volume: 1}, 1000).start();
