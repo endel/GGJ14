@@ -1,13 +1,13 @@
 var sound = {
   initialized: false,
   base: null,
-  playbackRate: 1,
-  lastPlaybackRate: 1,
+  playbackRate: 1.1,
+  lastPlaybackRate: 1.1,
 
   load: function() {
-    game.load.audio('sound-base', 'assets/songs/base.mp3');
-    game.load.audio('sound-basssynths', 'assets/songs/basssynths.mp3');
-    game.load.audio('sound-highvoices', 'assets/songs/highvoices.mp3');
+    game.load.audio('sound-base', 'assets/songs/base.wav');
+    game.load.audio('sound-basssynths', 'assets/songs/basesynths.wav');
+    game.load.audio('sound-highvoices', 'assets/songs/highvoices.wav');
   },
 
   init: function() {

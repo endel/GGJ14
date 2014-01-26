@@ -88,6 +88,7 @@ function create() {
 
     game.level = 1;
 
+
     cursors = game.input.keyboard.createCursorKeys();
 
     sound.init();
@@ -96,6 +97,10 @@ function create() {
     platforms.init();
     player.init();
     levels.buildBars();
+
+    //
+    sound.setPlaybackRate(1, 1500);
+    game.add.tween(player.energies).to({ 'blue': 0.5, 'green': 0, 'red': 0 }, 2000).start()
 
     // platforms.group = game.add.group();
     /*ground = platforms.group.create(-50, game.world.height - 64, 'ground');

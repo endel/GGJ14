@@ -6,7 +6,7 @@ var player = {
 
   // scoring
   score: 0,
-  energies: { 'blue': 0.5, 'green': 0, 'red': 0 },
+  energies: { 'blue': 1, 'green': 1, 'red': 1 },
 
   energiesToShow: { 'blue': true, 'green': false, 'red': false },
 
@@ -84,9 +84,11 @@ var player = {
 
     if (this.died) {
       this.instance.play('confused');
+      restart();
     } else {
       this.instance.play('collide');
     }
+
     setTimeout(function() {
       worldVelocity = previousWorldVelocity;
       player.instance.play('right');
