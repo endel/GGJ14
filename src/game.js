@@ -1,4 +1,11 @@
-var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', { 
+//var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', { 
+    preload: preload, 
+    create: create, 
+    update: update,
+    render: render,
+    debug: true
+});
 var cursors;
 
 var worldVelocity = 2;
@@ -37,6 +44,7 @@ function preload(a) {
     game.load.image('noite-sky', 'assets/background/noite/sky.png');
     game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
 
+    // platform
     game.load.image('platform1-1', 'assets/platforms/platform1-1.png');
     game.load.image('platform1-2', 'assets/platforms/platform1-2.png');
     game.load.image('platform1-3', 'assets/platforms/platform1-3.png');
@@ -46,6 +54,12 @@ function preload(a) {
     game.load.image('platform3-1', 'assets/platforms/platform3-1.png');
     game.load.image('platform3-2', 'assets/platforms/platform3-2.png');
     game.load.image('platform3-3', 'assets/platforms/platform3-3.png');
+    game.load.image('largeObstacle1', 'assets/platforms/largeObstacle1.png');
+    game.load.image('largeObstacle3-1', 'assets/platforms/largeObstacle3-1.png');
+    game.load.image('largeObstacle3-2', 'assets/platforms/largeObstacle3-2.png');
+    game.load.image('smallObstacle1', 'assets/platforms/smallObstacle1.png');
+    game.load.image('smallObstacle3-1', 'assets/platforms/smallObstacle3-1.png');
+    game.load.image('smallObstacle3-2', 'assets/platforms/smallObstacle3-2.png');
 }
 
 function create() {
@@ -78,8 +92,9 @@ function restart() {
 
 function update() {
 
+
     // always on top
-    game.physics.collide(player.instance, platforms.collideGroup);
+    //game.physics.collide(player.instance, platforms.platformsGroup);
 
 
     filters.update();
@@ -98,4 +113,8 @@ function update() {
         countdownToSpeedUp = 100;
         worldVelocity++;
     }*/
+}
+
+function render() {
+    platforms.debugBoundingBoxes();
 }

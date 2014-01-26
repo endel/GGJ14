@@ -43,18 +43,21 @@ var collector = {
 	// Função de enterFrame
 	refreshPosition: function()
 	{
-		this.group.x -= worldVelocity;
-
-		game.physics.overlap(player.instance, this.group, this.collisionHandler);
-
-		for(var i = 0; i < this.objects.length; ++i)
+		if(this.group)
 		{
-			var object = this.objects[i];
+			this.group.x -= worldVelocity;
 
-			if(object != null && (object.x + object.width) < (this.group.x * -1))
+			game.physics.overlap(player.instance, this.group, this.collisionHandler);
+
+			for(var i = 0; i < this.objects.length; ++i)
 			{
-				this.group.remove(object);
-				object.kill();
+				var object = this.objects[i];
+
+				if(object != null && (object.x + object.width) < (this.group.x * -1))
+				{
+					this.group.remove(object);
+					object.kill();
+				}
 			}
 		}
 	}
