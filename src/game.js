@@ -8,7 +8,7 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 });
 
 var cursors;
-var worldVelocity = 2;
+var worldVelocity = 4;
  
 var countdown = 1000;
 

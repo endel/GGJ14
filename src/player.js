@@ -25,6 +25,7 @@ var player = {
   	this.instance.body.bounce.y = 0;
   	this.instance.body.gravity.y = 20;
   	this.instance.body.collideWorldBounds = false;
+    this.instance.body.setSize(20, this.instance.height - 10, 20, 10);
 
 		this.instance.animations.add('right', ['sprites_01.png', 'sprites_02.png', 'sprites_03.png', 'sprites_04.png', 'sprites_05.png', 'sprites_06.png', 'sprites_07.png', 'sprites_08.png', 'sprites_09.png', 'sprites_10'.png],
                                  15, true);
