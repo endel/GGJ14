@@ -21,6 +21,9 @@ var platforms = {
 	// posição X para a próxima inserção de plataforma
 	nextX: 0,
 
+	// posição y da última plataforma adicionada
+	prevPlatformTileY: 0,
+
 	centerTexture1: null,
 	centerTexture2: null,
 	centerTexture3: null,
@@ -65,6 +68,17 @@ var platforms = {
 
 		tileSize = Math.floor(((maxTileSize + 1) - (minTileSize - 1)) * Math.random()) + minTileSize;
 		tileY = Math.floor(((maxTileY + 1) - (minTileY - 1)) * Math.random()) + minTileY;
+
+		if(this.prevPlatformTileY != 0)
+		{
+			if(tileY < this.prevPlatformTileY && tileY < (this.prevPlatformTileY - 1))
+			{
+				tileY = (this.prevPlatformTileY - 1);
+			}
+		}
+
+		this.prevPlatformTileY = tileY;
+
 		tileY = tileY * this.tileY;
 		currWidth = tileSize * this.tileWidth;
 
