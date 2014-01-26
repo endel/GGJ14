@@ -14,6 +14,7 @@ var player = {
 
   init:function(){
   	this.instance = game.add.sprite(100, 0, 'player');
+  	this.instance.name = 'player';
   	this.instance.body.bounce.y = 0;
   	this.instance.body.gravity.y = 17;
   	this.instance.body.collideWorldBounds = false;
@@ -48,7 +49,7 @@ var player = {
 	},
 
   kill: function() {
-    // die
+    
   },
 
   update:function(){
