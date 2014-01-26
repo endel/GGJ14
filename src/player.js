@@ -80,6 +80,8 @@ var player = {
     var i = 1;
     for (var type in this.energies) {
       if (this.energies[type] > 0) {
+        if(countdown > 0)
+          continue;
         this.energies[type] -= (0.0005) * i;
       }
       i++;

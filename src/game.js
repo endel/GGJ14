@@ -9,6 +9,8 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 var cursors;
 
 var worldVelocity = 2;
+ 
+var countdown = 1000;
 
 function preload(a) {
     // init
@@ -39,20 +41,20 @@ function preload(a) {
     game.load.image('dia-sky', 'assets/background/dia/sky.png');
 
     //tarde
-    game.load.image('tarde-mountain-lvl-1', 'assets/background/tarde/mountain-lvl-1.png');
-    game.load.image('tarde-mountain-lvl-2', 'assets/background/tarde/mountain-lvl-2.png');
-    game.load.image('tarde-mountain-lvl-3', 'assets/background/tarde/mountain-lvl-3.png');
-    game.load.image('tarde-lake-forest', 'assets/background/tarde/lake-forest.png');
-    game.load.image('tarde-sky', 'assets/background/tarde/sky.png');
-    game.load.image('tarde-cloud-front', 'assets/background/tarde/cloud-front.png');
+    // game.load.image('tarde-mountain-lvl-1', 'assets/background/tarde/mountain-lvl-1.png');
+    // game.load.image('tarde-mountain-lvl-2', 'assets/background/tarde/mountain-lvl-2.png');
+    // game.load.image('tarde-mountain-lvl-3', 'assets/background/tarde/mountain-lvl-3.png');
+    // game.load.image('tarde-lake-forest', 'assets/background/tarde/lake-forest.png');
+    // game.load.image('tarde-sky', 'assets/background/tarde/sky.png');
+    // game.load.image('tarde-cloud-front', 'assets/background/tarde/cloud-front.png');
 
     //noite
-    game.load.image('noite-mountain-lvl-1', 'assets/background/noite/mountain-lvl-1.png');
-    game.load.image('noite-mountain-lvl-2', 'assets/background/noite/mountain-lvl-2.png');
-    game.load.image('noite-mountain-lvl-3', 'assets/background/noite/mountain-lvl-3.png');
-    game.load.image('noite-lake-forest', 'assets/background/noite/lake-forest.png');
-    game.load.image('noite-sky', 'assets/background/noite/sky.png');
-    game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
+    // game.load.image('noite-mountain-lvl-1', 'assets/background/noite/mountain-lvl-1.png');
+    // game.load.image('noite-mountain-lvl-2', 'assets/background/noite/mountain-lvl-2.png');
+    // game.load.image('noite-mountain-lvl-3', 'assets/background/noite/mountain-lvl-3.png');
+    // game.load.image('noite-lake-forest', 'assets/background/noite/lake-forest.png');
+    // game.load.image('noite-sky', 'assets/background/noite/sky.png');
+    // game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
 
     // bars
     game.load.image('bar1', 'assets/bars/bar1.gif');
@@ -83,7 +85,7 @@ function preload(a) {
 }
 
 function create() {
-    game.level = 1;
+    game.level = 1;   
 
     cursors = game.input.keyboard.createCursorKeys();
 
@@ -116,6 +118,8 @@ function update() {
     sound.update();
     filters.update();
     parallax.update();
+
+    countdown -= 1;
 
     //ground.body.velocity.x = -worldVelocity;
     platforms.update();
