@@ -162,7 +162,7 @@ var platforms = {
 	// Função de enterFrame
 	update: function()
 	{
-    worldVelocity += 0.001;
+    	worldVelocity += 0.001;
 		this.platformsGroup.x -= worldVelocity;
 		this.obstaclesGroup.x -= worldVelocity;
 

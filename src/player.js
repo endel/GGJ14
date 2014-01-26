@@ -13,6 +13,12 @@ var player = {
   // adds energy qty per color
   colorEnergy: { 'blue': 0.1, 'green': 0.05, 'red': 0.01 },
 
+  // tempo para o pulo
+  timeJump: null,
+  minJump: 400,
+  maxJump: 700,
+  maxIntervalJumpTime: 90,
+
   init:function(){
   	this.instance = game.add.sprite(100, 0, 'player');
   	this.instance.name = 'player';
@@ -93,10 +99,27 @@ var player = {
       // ONLY ENABLE PLAYER JUMP AFTER THE ENTERING STAGE BEEN COMPLETED
       if(this.keyboardEnabled){
         // JUMP
-        if (cursors.up.isDown) {
-          this.instance.play('jump');
-          this.instance.body.velocity.y = -600;
+        if (cursors.up.isDown && !this.timeJump) {
+          this.timeJump = new Date().getTime();
         }
+
+        if(this.timeJump)
+        {
+          var currInterval = new Date().getTime() - this.timeJump,
+            currJump;
+
+          if(cursors.up.isUp || currInterval > this.maxIntervalJumpTime) {
+            currInterval = (currInterval > this.maxIntervalJumpTime)?this.maxIntervalJumpTime:currInterval;
+            console.log(currInterval);
+            this.timeJump = null;
+            this.instance.play('jump');
+
+            currJump = (currInterval * this.maxJump / this.maxIntervalJumpTime);
+            currJump = (currJump < this.minJump)?this.minJump:currJump;
+            this.instance.body.velocity.y = currJump * -1;
+          }
+        }
+
       }
 
     }
