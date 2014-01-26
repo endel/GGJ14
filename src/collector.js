@@ -2,41 +2,18 @@ var collector = {
 	group: null,
 	objects: [],
 
-	add: function(level, type, x, y)
+	add: function(color, type, x, y)
 	{
-    var numFrames = 39;
-		var color, sprite;
+    var sprite, numFrames = 39;
 
 		this.createGroup();
-
-		switch(level)
-		{
-			case 1:
-				color = 'blue';
-				break;
-			case 2:
-				color = 'green';
-				break;
-			case 3:
-				color = 'red';
-				break;
-		}
-
 		sprite = game.add.sprite(x, y, type + '-' + color);
     sprite.name = type;
     sprite.color = color;
 
-    switch(type) {
-      case 'point':
-        // sprite.
-        break;
-      case 'energy':
-        break;
-    }
-
     var frames = [];
     for (var i = 0, l = numFrames; i < l; i ++) {
-      frames.push(type + '-' + color + '/' + (String("0000" + i).slice(-4)));
+      frames.push('item-' + type + '-' + color + '/' + (String("0000" + i).slice(-4)));
     }
 
     sprite.animations.add('default', frames, 16, true);

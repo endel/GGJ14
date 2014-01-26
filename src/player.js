@@ -1,17 +1,21 @@
 var player = {
 
 	instance:null,
+  died: false,
 	keyboardEnabled:false,
 
   // scoring
   score: 0,
   energies: { 'blue': 0.5, 'green': 0, 'red': 0 },
 
+  energiesToShow: { 'blue': true, 'green': false, 'red': false },
+
   // adds score qty per color
   colorScore: { 'blue': 1, 'green': 5, 'red': 10 },
 
   // adds energy qty per color
   colorEnergy: { 'blue': 0.1, 'green': 0.05, 'red': 0.01 },
+  colorSpeed: { 'blue': 0.05, 'green': 0.1, 'red': 0.2 },
 
   // jump variables
   jumpVelocity: 300,
@@ -32,7 +36,7 @@ var player = {
                                  10, false);
 		this.instance.animations.add('collide', ['menina_colidindo_01.png', 'menina_colidindo_02.png', 'menina_colidindo_03.png', 'menina_colidindo_04.png', 'menina_colidindo_05.png', 'menina_colidindo_06.png', 'menina_colidindo_07.png', 'menina_colidindo_08.png', 'menina_colidindo_09.png', 'menina_colidindo_10.png', 'menina_colidindo_11.png', 'menina_colidindo_12.png', 'menina_colidindo_13.png', 'menina_colidindo_14.png', 'menina_colidindo_15'.png],
                                  15, false);
-		this.instance.animations.add('confused', ['menina_colidindo_06.png', 'menina_colidindo_07.png', 'menina_colidindo_08.png', 'menina_colidindo_09.png', 'menina_colidindo_10.png', 'menina_colidindo_11.png', 'menina_colidindo_12.png', 'menina_colidindo_13.png', 'menina_colidindo_14.png', 'menina_colidindo_15'.png],
+		this.instance.animations.add('confused', ['menina_colidindo_06.png', 'menina_colidindo_07.png', 'menina_colidindo_08.png', 'menina_colidindo_09.png', 'menina_colidindo_10.png', 'menina_colidindo_11.png', 'menina_colidindo_12.png', 'menina_colidindo_13.png', 'menina_colidindo_14.png', 'menina_colidindo_15.png'],
                                  15, true);
 
     // this.instance
@@ -52,6 +56,7 @@ var player = {
 	},
 
 	addEnergy: function(color) {
+    worldVelocity += this.colorSpeed[color];
 		this.energies[color] += this.colorEnergy[color];
 		this.energies[color] = (this.energies[color] > 1) ? 1 : this.energies[color];
 	},
@@ -70,7 +75,11 @@ var player = {
       sound.setPlaybackRate(previousPlaybackRate, 1500);
     });
 
-    this.instance.play('collide');
+    if (this.died) {
+      this.instance.play('confused');
+    } else {
+      this.instance.play('collide');
+    }
     setTimeout(function() {
       worldVelocity = previousWorldVelocity;
       player.instance.play('right');
@@ -86,6 +95,18 @@ var player = {
       }
       i++;
     }
+
+    // energies to show
+    this.energiesToShow['green'] = (this.energies['blue'] > 0.8);
+    this.energiesToShow['red'] = (this.energies['green'] > 0.8);
+
+    this.died = (this.energies['blue'] <= 0 && this.energies['green'] <= 0 && this.energies['red'] <= 0);
+
+    if (this.died) {
+      this.kill();
+      return false;
+    }
+
 
     levels.barsUpdate();
 

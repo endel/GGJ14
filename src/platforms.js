@@ -129,10 +129,27 @@ var platforms = {
 
 	addItems: function(platformX, platformY, platformWidth)
 	{
-		collector.add(1, 'point', (platformX + (platformWidth / 2)) - 100 , platformY);
-		collector.add(1, 'point', (platformX + (platformWidth / 2))       , platformY);
-		collector.add(1, 'point', (platformX + (platformWidth / 2)) + 100 , platformY);
-		collector.add(1, 'energy', (platformX + (platformWidth / 2))      , platformY - 100);
+    var allowed = [];
+    if (player.energiesToShow['blue']) { allowed.push('blue'); }
+    if (player.energiesToShow['green']) { allowed.push('green'); }
+    if (player.energiesToShow['red']) { allowed.push('red'); }
+
+    // points qty:
+    // random(5) + random()
+    for (var i = 0, l = allowed.length; i < l; i ++) {
+      var color = allowed[i],
+          qty = Math.random() * (6 - i);
+
+      for (var j = 0, l2 = qty; j < l2; j ++) {
+        collector.add(color, 'point', platformX + (Math.random() * platformWidth), platformY - (Math.random() * 50));
+
+        // energy probabillity,
+        // it is most likely to appear at the beggining of the game
+        if (Math.random()*(worldVelocity/2) < 2) {
+          collector.add(color, 'energy', platformX + (Math.random() * platformWidth), platformY - (Math.random() * 100));
+        }
+      }
+    }
 	},
 
 	addObstacles: function(platformX, platformY, platformWidth)
@@ -182,7 +199,6 @@ var platforms = {
 	// Função de enterFrame
 	update: function()
 	{
-    	worldVelocity += 0.001;
 		this.platformsGroup.x -= worldVelocity;
 		this.obstaclesGroup.x -= worldVelocity;
 
