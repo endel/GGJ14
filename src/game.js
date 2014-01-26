@@ -9,9 +9,9 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 
 var cursors;
 var worldVelocity = 4;
-
+var goToRestart = false;
 var countdown = 1000;
-
+var jumpKey;
 function preload(a) {
     // init
     filters.load();
@@ -86,10 +86,11 @@ function preload(a) {
 
 function create() {
 
-    game.level = 1;
+    game.level = 1;   
 
 
     cursors = game.input.keyboard.createCursorKeys();
+    jumpKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     sound.init();
     filters.init();
@@ -138,9 +139,12 @@ function create() {
 function restart() {
 
 
-  console.log("Restart...");
-  //create();
-
+    console.log("Restart...");
+    window.onkeyup = function(e){
+        if(goToRestart  && e.keyCode == 32) location.reload();
+    }
+    PRESSSPACE.style.display = 'block';
+    goToRestart = true;
 }
 
 function update() {
