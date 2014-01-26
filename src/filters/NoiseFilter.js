@@ -22,16 +22,6 @@ Phaser.Filter.NoiseFilter = function (game) {
 
     this.uniforms.amount = { type: '1f', value: 0 };
 
-    // this.vextexSrc = [
-    //   "uniform float time;",
-    //   "varying vec3 v_texCoord3D;",
-    //   "void main( void )",
-    //   "{",
-    //     "gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;",
-    //     "v_texCoord3D = gl_Vertex.xyz;",
-    //   "}"
-    // ];
-
     //  The fragment shader source
     this.fragmentSrc = [
         "precision mediump float;",
@@ -77,16 +67,6 @@ Phaser.Filter.NoiseFilter.prototype.constructor = Phaser.Filter.NoiseFilter;
 Phaser.Filter.NoiseFilter.prototype.init = function (width, height) {
     this.setResolution(width, height);
 }
-
-Object.defineProperty(Phaser.Filter.NoiseFilter.prototype, 'time', {
-    get: function() {
-        return this.uniforms.time.value;
-    },
-    set: function(value) {
-        this.uniforms.time.value = value;
-    }
-});
-
 
 Object.defineProperty(Phaser.Filter.NoiseFilter.prototype, 'amount', {
     get: function() {

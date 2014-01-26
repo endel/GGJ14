@@ -3,9 +3,9 @@ var platforms = {
 	obstacles: [],
 	// array de plataformas
 	grounds: [],
-	// 
+	//
 	platformsGroup: null,
-	// 
+	//
 	obstaclesGroup: null,
 	// step da largura da plataforma
 	tileWidth: 100,
@@ -141,7 +141,7 @@ var platforms = {
 	},
 
 	// Função de enterFrame
-	refreshPosition: function()
+	update: function()
 	{
 	    game.physics.collide(player.instance, this.platformsGroup);
 	    game.physics.collide(player.instance, this.obstaclesGroup, this.lalala);

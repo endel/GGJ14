@@ -40,8 +40,9 @@ var collector = {
 			this.group = game.add.group();
 		}
 	},
+
 	// Função de enterFrame
-	refreshPosition: function()
+	update: function()
 	{
 		if(this.group)
 		{
