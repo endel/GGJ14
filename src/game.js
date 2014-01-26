@@ -15,6 +15,14 @@ function preload(a) {
     // init
     filters.load();
 
+    // energies
+    game.load.atlas('energy-blue', 'assets/energy-blue.png', 'assets/energy-blue.json');
+    game.load.atlas('point-blue', 'assets/point-blue.png', 'assets/point-blue.json');
+    game.load.atlas('energy-green', 'assets/energy-green.png', 'assets/energy-green.json');
+    game.load.atlas('point-green', 'assets/point-green.png', 'assets/point-green.json');
+    game.load.atlas('energy-red', 'assets/energy-red.png', 'assets/energy-red.json');
+    game.load.atlas('point-red', 'assets/point-red.png', 'assets/point-red.json');
+
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
