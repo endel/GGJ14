@@ -77,6 +77,11 @@ var platforms = {
 			}
 		}
 
+		if(this.grounds == 0)
+		{
+			tileSize = 12;
+		}
+
 		this.prevPlatformTileY = tileY;
 
 		tileY = tileY * this.tileY;
@@ -103,12 +108,6 @@ var platforms = {
 		visibleGround2.body.setSize(realWidth, 30, 0, 50);
 		this.platformsGroup.add(visibleGround2);
 
-		collector.add(1, 'point', (currX + (currWidth / 2)) - 100 , tileY);
-		collector.add(1, 'point', (currX + (currWidth / 2))       , tileY);
-		collector.add(1, 'point', (currX + (currWidth / 2)) + 100 , tileY);
-		collector.add(1, 'energy', (currX + (currWidth / 2))      , tileY - 100);
-
-		this.insertObstacle((currX + (currWidth / 2)), tileY, 'large');
 
 		if(this.grounds.length == 0)
 		{
@@ -118,6 +117,8 @@ var platforms = {
 		}
 		else
 		{
+			this.addItems(currX, tileY, currWidth);
+			this.addObstacles(currX, tileY, currWidth);
 			this.nextX += currWidth + this.tileInterval;
 		}
 		//this.grounds.push(ground);
@@ -125,6 +126,19 @@ var platforms = {
 		this.grounds.push(visibleGround2);
 		this.grounds.push(visibleGround3);
 
+	},
+
+	addItems: function(platformX, platformY, platformWidth)
+	{
+		collector.add(1, 'point', (platformX + (platformWidth / 2)) - 100 , platformY);
+		collector.add(1, 'point', (platformX + (platformWidth / 2))       , platformY);
+		collector.add(1, 'point', (platformX + (platformWidth / 2)) + 100 , platformY);
+		collector.add(1, 'energy', (platformX + (platformWidth / 2))      , platformY - 100);
+	},
+
+	addObstacles: function(platformX, platformY, platformWidth)
+	{
+		this.insertObstacle((platformX + (platformWidth / 2)), platformY, 'large');
 	},
 
 	insertObstacle: function(x, y, size)
