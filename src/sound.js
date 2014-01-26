@@ -1,4 +1,5 @@
 var sound = {
+  initialized: false,
   base: null,
   playbackRate: 1,
   lastPlaybackRate: 1,
@@ -10,6 +11,8 @@ var sound = {
   },
 
   init: function() {
+    initialized = true;
+
     this.base = game.add.audio('sound-base', 1, true);
     this.basssynths = game.add.audio('sound-basssynths', 1, true);
     this.highvoices = game.add.audio('sound-highvoices', 1, true);
@@ -20,6 +23,8 @@ var sound = {
   },
 
   setLevel: function(level) {
+    if(this.initialized == false) {return null;}
+    
     switch(level) {
       case 1:
         game.add.tween(this.base).to({volume: 1}, 1000).start();
@@ -40,6 +45,8 @@ var sound = {
   },
 
   setPlaybackRate: function(rate, interval) {
+    if(this.initialized == false) {return null;}
+
     if (!interval) {
       interval = 1;
     }

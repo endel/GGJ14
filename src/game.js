@@ -1,14 +1,16 @@
 var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
-//var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
+// var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
     preload: preload,
     create: create,
     update: update,
     render: render,
     debug: true
 });
-var cursors;
 
-var worldVelocity = 2;
+var cursors;
+var worldVelocity = 4;
+ 
+var countdown = 1000;
 
 function preload(a) {
     // init
@@ -39,20 +41,20 @@ function preload(a) {
     game.load.image('dia-sky', 'assets/background/dia/sky.png');
 
     //tarde
-    game.load.image('tarde-mountain-lvl-1', 'assets/background/tarde/mountain-lvl-1.png');
-    game.load.image('tarde-mountain-lvl-2', 'assets/background/tarde/mountain-lvl-2.png');
-    game.load.image('tarde-mountain-lvl-3', 'assets/background/tarde/mountain-lvl-3.png');
-    game.load.image('tarde-lake-forest', 'assets/background/tarde/lake-forest.png');
-    game.load.image('tarde-sky', 'assets/background/tarde/sky.png');
-    game.load.image('tarde-cloud-front', 'assets/background/tarde/cloud-front.png');
+    // game.load.image('tarde-mountain-lvl-1', 'assets/background/tarde/mountain-lvl-1.png');
+    // game.load.image('tarde-mountain-lvl-2', 'assets/background/tarde/mountain-lvl-2.png');
+    // game.load.image('tarde-mountain-lvl-3', 'assets/background/tarde/mountain-lvl-3.png');
+    // game.load.image('tarde-lake-forest', 'assets/background/tarde/lake-forest.png');
+    // game.load.image('tarde-sky', 'assets/background/tarde/sky.png');
+    // game.load.image('tarde-cloud-front', 'assets/background/tarde/cloud-front.png');
 
     //noite
-    game.load.image('noite-mountain-lvl-1', 'assets/background/noite/mountain-lvl-1.png');
-    game.load.image('noite-mountain-lvl-2', 'assets/background/noite/mountain-lvl-2.png');
-    game.load.image('noite-mountain-lvl-3', 'assets/background/noite/mountain-lvl-3.png');
-    game.load.image('noite-lake-forest', 'assets/background/noite/lake-forest.png');
-    game.load.image('noite-sky', 'assets/background/noite/sky.png');
-    game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
+    // game.load.image('noite-mountain-lvl-1', 'assets/background/noite/mountain-lvl-1.png');
+    // game.load.image('noite-mountain-lvl-2', 'assets/background/noite/mountain-lvl-2.png');
+    // game.load.image('noite-mountain-lvl-3', 'assets/background/noite/mountain-lvl-3.png');
+    // game.load.image('noite-lake-forest', 'assets/background/noite/lake-forest.png');
+    // game.load.image('noite-sky', 'assets/background/noite/sky.png');
+    // game.load.image('noite-cloud-front', 'assets/background/noite/cloud-front.png');
 
     // bars
     game.load.image('bar1', 'assets/bars/bar1.gif');
@@ -83,11 +85,12 @@ function preload(a) {
 }
 
 function create() {
-    game.level = 1;
+
+    game.level = 1;   
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    sound.init();
+    //sound.init();
     filters.init();
     levels.init(game.level);
     platforms.init();
@@ -103,6 +106,28 @@ function create() {
     doge.anchor.setTo(0.5,0.5);
 
     doge.filters = [filter];*/
+
+    window.onkeypress = keypress;
+
+    function keypress(e) {
+        if(e.keyCode == 112) {game.paused = !game.paused;}
+        else if(typeof e.force != 'undefined'){
+            if(e.force == 'pause') game.paused = true;
+            else if(e.force == 'unpause') game.paused = false;
+
+        }
+        if(game.paused) PRESSSPACE.style.display = 'block'; else PRESSSPACE.style.display = 'none'
+    }
+
+    window.addEventListener('focus',function(e){
+        keypress({force:'unpause'});
+    });
+
+    window.addEventListener('blur',function(e){
+        keypress({force:'pause'});
+    });
+
+    STATICPRELOAD.remove();
 }
 
 function restart() {
@@ -117,6 +142,8 @@ function update() {
     // sound.update();
     filters.update();
     parallax.update();
+
+    countdown -= 1;
 
     platforms.update();
     collector.update();

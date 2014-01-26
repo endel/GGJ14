@@ -3,6 +3,12 @@ var platforms = {
 	// array de obstaculos
 	obstacles: [],
 
+	//
+	obstacleNames: [],
+
+	//
+	collidedObstacleNames: [],
+
 	// array de plataformas
 	grounds: [],
 
@@ -47,19 +53,19 @@ var platforms = {
 		switch(game.level)
 		{
 			case 1:
-				minTileSize = 6;
-				maxTileSize = 8;
+				minTileSize = 8;
+				maxTileSize = 10;
 				minTileY = 3;
 				maxTileY = 4;
 				break;
 			case 2:
-				minTileSize = 4;
+				minTileSize = 7;
 				maxTileSize = 10;
 				minTileY = 2;
 				maxTileY = 4;
 				break;
 			case 3:
-				minTileSize = 3;
+				minTileSize = 5
 				maxTileSize = 10;
 				minTileY = 1;
 				maxTileY = 5;
@@ -154,17 +160,78 @@ var platforms = {
 
 	addObstacles: function(platformX, platformY, platformWidth)
 	{
+		var leftMargin = platformX + 250,
+			rightMargin = (platformX + platformWidth) - 250,
+			spaceWidth = rightMargin - leftMargin;
+			isGroup = (worldVelocity > 6)?((Math.random() > .5)?true:false):false,
+			groupType = null,
+			size = (worldVelocity < 4)?((Math.random() > .5)?'small':'large'):((Math.random() > .8)?'small':'large');
+
+		if(isGroup == true)
+		{
+			var groupX = leftMargin + (Math.random() * spaceWidth);
+			groupType = (worldVelocity < 6)?1:((Math.random() > .7)?1:2);
+			this.insertObstacleGroup(groupX, platformY, size, 2);
+		}
+		else
+		{
+			if(platformWidth <= 600)
+			{
+				this.insertObstacle((leftMargin + (Math.random() * spaceWidth)), platformY, size);
+			}
+			else
+			{
+				this.insertObstacle((leftMargin + ((Math.random() * .3) * spaceWidth)), platformY, size);
+				this.insertObstacle((leftMargin + (((Math.random() * .3) + .6) * spaceWidth)), platformY, size);
+			}
+			// else if(platformWidth <= 600)
+			// {
+			// 	this.insertObstacle((leftMargin + ((Math.random() * .3) * spaceWidth)), platformY, size);
+			// 	this.insertObstacle((leftMargin + (((Math.random() * .3) + .5) * spaceWidth)), platformY, size);
+			// }
+			// else
+			// {
+			// 	this.insertObstacle((leftMargin + ((Math.random() * .2) * spaceWidth)), platformY, size);
+			// 	this.insertObstacle((leftMargin + (((Math.random() * .2) + .3) * spaceWidth)), platformY, size);
+			// 	this.insertObstacle((leftMargin + (((Math.random() * .2) + .3) * spaceWidth)), platformY, size);
+			// }
+		}
+
 		//this.insertObstacle((platformX + (platformWidth / 2)), platformY, 'large');
 
-		this.insertObstacleGroup(platformX, platformY);
+		//this.insertObstacleGroup(platformX + (platformWidth/2), platformY, 'large', 2);
 	},
 
-	insertObstacleGroup: function(x, y)
+	insertObstacleGroup: function(x, y, size, type)
 	{
+		var sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, width;
 
+		type = (type == undefined)?1:type;
+
+		switch(type)
+		{
+			case 1:
+				sprite1 = this.insertObstacle(x, y, size);
+				sprite1.x -= sprite1.width + 5;
+				sprite2 = this.insertObstacle(x + sprite1.width + 10, y, size, sprite1.name);
+				sprite3 = this.insertObstacle(x + ((sprite1.width + 10) /2 ), y - 25, size, sprite1.name);
+				width = (sprite2.x + sprite2.width) - sprite1.x;
+				break;
+			case 2:
+				sprite1 = this.insertObstacle(x, y, size);
+				sprite1.x -= ((sprite1.width * 3) + 20) / 2;
+				sprite2 = this.insertObstacle(sprite1.x + sprite1.width + 10, y, size, sprite1.name);
+				sprite3 = this.insertObstacle(sprite2.x + sprite2.width + 10, y, size, sprite1.name);
+				sprite4 = this.insertObstacle(sprite1.x + ((sprite1.width + 10) /2 ), y - 25, size, sprite1.name);
+				sprite5 = this.insertObstacle(sprite4.x + sprite1.width + 10, y - 25, size, sprite1.name);
+				width = (sprite3.x + sprite3.width) - sprite1.x;
+				break;
+		}
+
+		return width;
 	},
 
-	insertObstacle: function(x, y, size)
+	insertObstacle: function(x, y, size, name)
 	{
 		var sprite, textureName;
 
@@ -181,13 +248,20 @@ var platforms = {
 				break;
 		}
 		sprite = game.add.sprite(x, y, textureName);
-		sprite.name = 'obstacle';
+		sprite.name = (name)?name:'obstacle' + this.obstacleNames.length;
 		sprite.body.customSeparateX = true;
 		sprite.body.immovable = true;
 		sprite.y -= (sprite.height/2);
-		sprite.body.setSize(sprite.width, sprite.height / 2, 0, (sprite.height / 2)/2);
+		sprite.body.setSize(sprite.width - ((size == 'small')?10:20), sprite.height / 2, ((size == 'small')?5:10), (sprite.height / 2)/2);
 		this.obstaclesGroup.add(sprite);
 		this.obstacles.push(sprite);
+
+		if(this.obstacleNames.indexOf(sprite.name) == -1)
+		{
+			this.obstacleNames.push(sprite.name);
+		}
+
+		return sprite;
 	},
 
 	// Retorna o total da largura que está sem plataformas.
@@ -250,14 +324,26 @@ var platforms = {
 				game.debug.renderRectangle(obstacle.body);
 			}
 		}
+		for(var i = 0; i < collector.objects.length; ++i)
+		{
+			var object = collector.objects[i];
+			if(object)
+			{
+				game.debug.renderRectangle(object.body);
+			}
+		}
 	},
 
 	obstacleCollided: function(s1, s2)
 	{
 		if(s2.alive)
 		{
-      s2.alive = false;
-			player.kill();
+			if(platforms.collidedObstacleNames.length == 0 || platforms.collidedObstacleNames.indexOf(s2.name) == -1)
+			{
+				platforms.collidedObstacleNames.push(s2.name);
+	      		s2.alive = false;
+				player.kill();
+			}
 		}
 	},
 
