@@ -142,6 +142,7 @@ var levels = {
 	},
 
 	init: function(level){
+		console.log("level control");
 
 		switch(level){
 			case 1:
@@ -157,9 +158,9 @@ var levels = {
 			break;
 		}
 
-		this.buildBars();
-
 		parallax.init(this.actualGroup);
+
+		this.buildBars();
 	},
 
 	buildBars: function()
@@ -168,33 +169,68 @@ var levels = {
 
 		for(i = 0; i < total; ++i)
 		{
-			/*obj = {};
-			obj.maxWidth = 185;
+			obj = function()
+			{
+				var maxWidth, group, background, bar, emptyBar;
+				
+				maxWidth = 185;
 
-			obj.group = game.add.group();
-			obj.group.x = 10;
-			obj.group.y = (10 + (30 * i));
+				group = game.add.group();
+				group.x = 10;
+				group.y = (10 + (30 * i));
 
-			obj.background = game.add.sprite(0, 0, 'backgroundBar');
-			obj.group.add(obj.background);
+				background = game.add.sprite(0, 0, 'backgroundBar');
+				group.add(background);
 
-			obj.bar = game.add.sprite(6, 5, 'bar' + (i + 1));
-			obj.bar.width = 0;
-			obj.group.add(obj.bar);
+				bar = game.add.sprite(6, 5, 'bar' + (i + 1));
+				bar.width = 0;
+				group.add(bar);
 
-			obj.emptyBar = game.add.sprite(6, 5, 'emptyBar');
-			obj.width = obj.maxWidth;
-			obj.group.add(obj.maxWidth);*/
+				emptyBar = game.add.sprite(6, 5, 'emptyBar');
+				emptyBar.width = maxWidth;
+				group.add(emptyBar);
 
-			this.bars.push(obj);
+				setEnergy = function(i)
+				{
+					var width = Math.ceil(i * maxWidth / 1);
+					bar.width = width;
+
+					emptyBar.x = bar.x + bar.width;
+					emptyBar.width = maxWidth - width;
+				}
+
+				setEnergy(i * .5);
+
+				setEnable = function(b)
+				{
+					if(b == true)
+					{
+						group.alpha = 1;
+					}
+					else
+					{
+						group.alpha = .5;
+					}
+				}
+
+				setEnable(false);
+
+				return {
+					setEnable: setEnable,
+					setEnergy: setEnergy
+				}
+			};
+			
+			this.bars.push(obj());
 		}
 	},
 
 	// create: function(){
+
 	// },
 
 	changeLevel: function(level){
-
+		
 		switch(level){
 			case 1:
 				this.actualGroup = this.group1;
@@ -211,6 +247,9 @@ var levels = {
 
 		parallax.replaceGroupChild(this.actualGroup);
 
-	}
+	},
 
+	objectCollected: function(obj){
+		console.log(obj)
+	}
 };
