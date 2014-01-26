@@ -22,15 +22,17 @@ var collector = {
 				break;
 		}
 
-		sprite = game.add.sprite(x, y, type + '-' + color);
+		sprite = game.add.sprite(x, y, type + '-' + color);		
+
     sprite.name = type;
     sprite.color = color;
 
     switch(type) {
       case 'point':
-        // sprite.
+        sprite.body.setSize(10, 10, 0, -20);
         break;
       case 'energy':
+      	sprite.body.setSize(15, 15, 0, -15);
         break;
     }
 

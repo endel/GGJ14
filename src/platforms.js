@@ -270,6 +270,14 @@ var platforms = {
 				game.debug.renderRectangle(obstacle.body);
 			}
 		}
+		for(var i = 0; i < collector.objects.length; ++i)
+		{
+			var object = collector.objects[i];
+			if(object)
+			{
+				game.debug.renderRectangle(object.body);
+			}
+		}
 	},
 
 	obstacleCollided: function(s1, s2)
