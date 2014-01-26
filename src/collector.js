@@ -60,7 +60,7 @@ var collector = {
       player.addScore(sprite2.color);
     }
 
-    game.add.tween(sprite2).to({alpha: 0}, 200).onCompleteCallback(function() {
+    game.add.tween(sprite2).to({alpha: 0}, 100).onCompleteCallback(function() {
       sprite2.kill();
     }).start();
 		return false;
