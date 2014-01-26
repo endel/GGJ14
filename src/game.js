@@ -87,7 +87,7 @@ function create() {
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    sound.init();
+    //sound.init();
     filters.init();
     levels.init(game.level);
     platforms.init();
