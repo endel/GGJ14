@@ -9,7 +9,7 @@ var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
 
 var cursors;
 var worldVelocity = 4;
- 
+
 var countdown = 1000;
 
 function preload(a) {
@@ -86,11 +86,11 @@ function preload(a) {
 
 function create() {
 
-    game.level = 1;   
+    game.level = 1;
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    //sound.init();
+    sound.init();
     filters.init();
     levels.init(game.level);
     platforms.init();

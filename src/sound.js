@@ -24,7 +24,7 @@ var sound = {
 
   setLevel: function(level) {
     if(this.initialized == false) {return null;}
-    
+
     switch(level) {
       case 1:
         game.add.tween(this.base).to({volume: 1}, 1000).start();
@@ -45,8 +45,6 @@ var sound = {
   },
 
   setPlaybackRate: function(rate, interval) {
-    if(this.initialized == false) {return null;}
-
     if (!interval) {
       interval = 1;
     }
@@ -54,9 +52,10 @@ var sound = {
 
     game.add.tween(this.base._sound.playbackRate).to({value: rate}, interval).start();
     game.add.tween(this.basssynths._sound.playbackRate).to({value: rate}, interval).start();
+
     var tween = game.add.tween(this.highvoices._sound.playbackRate).to({value: rate}, interval).start();
     return tween;
   }
 
 
-}
+};
