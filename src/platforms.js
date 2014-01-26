@@ -86,7 +86,7 @@ var platforms = {
     	// ground.filters = filters.all;
 		//collector.addObject(1, (currX + (currWidth / 2)) - 100, tileY);
 
-		//this.insertObstacle((currX + (currWidth / 2)), tileY, 'large');
+		this.insertObstacle((currX + (currWidth / 2)), tileY, 'large');
 
 		if(this.grounds.length == 0)
 		{
@@ -135,17 +135,9 @@ var platforms = {
 		return game.width - (this.nextX + this.platformsGroup.x);
 	},
 
-	lalala: function(s1, s2)
-	{
-		//console.log(s1, s2);
-	},
-
 	// Função de enterFrame
 	refreshPosition: function()
 	{
-	    game.physics.collide(player.instance, this.platformsGroup);
-	    game.physics.collide(player.instance, this.obstaclesGroup, this.lalala);
-
 		this.platformsGroup.x -= worldVelocity;
 		this.obstaclesGroup.x -= worldVelocity;
 

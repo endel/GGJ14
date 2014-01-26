@@ -87,10 +87,10 @@ var parallax = {
 
 	update:function(){	
 		for(var x in this.actualGroup){
-			console.log("atualiza parallax");
+			//console.log("atualiza parallax");
 			if(this.actualGroup[x].xRatio <= 0) continue;
 			for(var y in this.actualGroup[x].instances){
-				console.log("atualiza parallax");
+				//console.log("atualiza parallax");
 				var altY = (y==0)?1:0;
 
 				if(this.actualGroup[x].instances[y].body.x < -this.actualGroup[x].width)

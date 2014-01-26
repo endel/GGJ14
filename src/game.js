@@ -95,7 +95,8 @@ function update() {
 
 
     // always on top
-    //game.physics.collide(player.instance, platforms.platformsGroup);
+    game.physics.collide(player.instance, platforms.platformsGroup);
+    game.physics.collide(player.instance, platforms.obstaclesGroup);
 
 
     filters.update();
