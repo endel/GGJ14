@@ -175,15 +175,16 @@ var platforms = {
 		}
 		else
 		{
-			if(platformWidth <= 600)
-			{
+			// if(platformWidth <= 600)
+			// {
 				this.insertObstacle((leftMargin + (Math.random() * spaceWidth)), platformY, size);
-			}
-			else
-			{
-				this.insertObstacle((leftMargin + ((Math.random() * .3) * spaceWidth)), platformY, size);
-				this.insertObstacle((leftMargin + (((Math.random() * .3) + .6) * spaceWidth)), platformY, size);
-			}
+			// }
+			// else
+			// {
+			// 	this.insertObstacle((leftMargin + (Math.random() * spaceWidth)), platformY, size);
+			// 	this.insertObstacle((leftMargin + ((Math.random() * .3) * spaceWidth)), platformY, size);
+			// 	this.insertObstacle((leftMargin + (((Math.random() * .3) + .6) * spaceWidth)), platformY, size);
+			// }
 			// else if(platformWidth <= 600)
 			// {
 			// 	this.insertObstacle((leftMargin + ((Math.random() * .3) * spaceWidth)), platformY, size);
