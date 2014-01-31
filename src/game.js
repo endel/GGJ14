@@ -86,7 +86,7 @@ function preload(a) {
 
 function create() {
 
-    game.level = 1;   
+    game.level = 1;
 
 
     cursors = game.input.keyboard.createCursorKeys();

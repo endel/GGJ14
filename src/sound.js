@@ -17,9 +17,12 @@ var sound = {
     this.basssynths = game.add.audio('sound-basssynths', 1, true);
     this.highvoices = game.add.audio('sound-highvoices', 1, true);
 
+
     this.base.play('', 0, 1, true);
     this.basssynths.play('', 0, 0, true);
     this.highvoices.play('', 0, 0, true);
+
+    this.setPlaybackRate(0.99, 1);
   },
 
   setLevel: function(level) {

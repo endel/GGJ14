@@ -16,18 +16,19 @@ var player = {
   // adds energy qty per color
   colorEnergy: { 'blue': 0.1, 'green': 0.05, 'red': 0.01 },
   colorSpeed: { 'blue': 0.05, 'green': 0.1, 'red': 0.2 },
+  colorDownSpeed: 0.0005,
 
   // jump variables
-  jumpVelocity: 300,
+  jumpVelocity: 500,
   jumpTime: 0,
   maxJumpTime: 150,
-  jumpIncreaseRatio: 50,
+  jumpIncreaseRatio: 70,
 
   init:function(){
   	this.instance = game.add.sprite(100, 0, 'player');
   	this.instance.name = 'player';
   	this.instance.body.bounce.y = 0;
-  	this.instance.body.gravity.y = 20;
+  	this.instance.body.gravity.y = 40;
   	this.instance.body.collideWorldBounds = false;
     this.instance.body.setSize(20, this.instance.height - 10, 20, 10);
 
@@ -64,6 +65,11 @@ var player = {
 
 	addScore: function(color) {
 		this.score += this.colorScore[color];
+
+    // lesser addEnergy
+    worldVelocity += this.colorSpeed[color] / 2;
+		this.energies[color] += (this.colorEnergy[color] / 3);
+		this.energies[color] = (this.energies[color] > 1) ? 1 : this.energies[color];
 	},
 
   kill: function() {
@@ -102,7 +108,7 @@ var player = {
       if (this.energies[type] > 0) {
         if(countdown > 0)
           continue;
-        this.energies[type] -= (0.0005) * i;
+        this.energies[type] -= this.colorDownSpeed;
       }
       i++;
     }
