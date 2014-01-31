@@ -1,4 +1,6 @@
 var platforms = {
+  // nível da barra atual
+  level: 1,
 
 	// array de obstaculos
 	obstacles: [],
@@ -50,27 +52,34 @@ var platforms = {
 	{
 		var ground, visibleGround1, visibleGround2, visibleGround3, minTileSize, maxTileSize, tileSize, minTileY, maxTileY, tileY, currWidth, currHeight, currX;
 
-		switch(game.level)
-		{
-			case 1:
-				minTileSize = 8;
-				maxTileSize = 10;
-				minTileY = 3;
-				maxTileY = 4;
-				break;
-			case 2:
-				minTileSize = 7;
-				maxTileSize = 10;
-				minTileY = 2;
-				maxTileY = 4;
-				break;
-			case 3:
-				minTileSize = 5
-				maxTileSize = 10;
-				minTileY = 1;
-				maxTileY = 5;
-				break;
-		}
+    if (player.energiesToShow['red']) {
+      // level 3
+      minTileSize = 5
+      maxTileSize = 20;
+      minTileY = 1;
+      maxTileY = 5;
+      this.level = 3;
+      this.tileInterval = 100 + (Math.random() * 200);
+
+    } else if (player.energiesToShow['green'] && !player.energiesToShow['red']) {
+      // level 2
+      minTileSize = 7;
+      maxTileSize = 12;
+      minTileY = 2;
+      maxTileY = 4;
+      this.level = 2;
+      this.tileInterval = 100 + (Math.random() * 100);
+
+    } else {
+      // level 1
+      minTileSize = 8;
+      maxTileSize = 10;
+      minTileY = 3;
+      maxTileY = 4;
+      this.level = 1;
+      this.tileInterval = 50 + (Math.random() * 50);
+
+    }
 
 		tileSize = Math.floor(((maxTileSize + 1) - (minTileSize - 1)) * Math.random()) + minTileSize;
 		tileY = Math.floor(((maxTileY + 1) - (minTileY - 1)) * Math.random()) + minTileY;
@@ -93,7 +102,7 @@ var platforms = {
 		tileY = tileY * this.tileY;
 		currWidth = tileSize * this.tileWidth;
 
-		currX = (this.grounds.length == 0)?this.tileInterval/-2:this.nextX + this.tileInterval/2;
+		currX = (this.grounds.length == 0) ? this.tileInterval/-2 : this.nextX + this.tileInterval /2;
 
 		// adicionando plataforma visível
 		visibleGround1 = game.add.sprite(currX, tileY - 50, 'platform' + game.level + '-1');
@@ -140,6 +149,8 @@ var platforms = {
     if (player.energiesToShow['green']) { allowed.push('green'); }
     if (player.energiesToShow['red']) { allowed.push('red'); }
 
+    platformY += 60;
+
     // points qty:
     // random(5) + random()
     for (var i = 0, l = allowed.length; i < l; i ++) {
@@ -147,12 +158,12 @@ var platforms = {
           qty = Math.random() * (6 - i);
 
       for (var j = 0, l2 = qty; j < l2; j ++) {
-        collector.add(color, 'point', platformX + (Math.random() * platformWidth), platformY - (Math.random() * 50));
+        collector.add(color, 'point', platformX + (Math.random() * platformWidth), platformY - (Math.random() * 60));
 
         // energy probabillity,
         // it is most likely to appear at the beggining of the game
         if (Math.random()*(worldVelocity/2) < 2) {
-          collector.add(color, 'energy', platformX + (Math.random() * platformWidth), platformY - (Math.random() * 100));
+          collector.add(color, 'energy', platformX + (Math.random() * platformWidth), platformY - (Math.random() * 160));
         }
       }
     }
