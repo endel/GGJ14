@@ -2,7 +2,7 @@ var filters = {
   all: [],
 
   enabled: true,
-  // enabled: (game.renderType == Phaser.WEBGL),
+  // enabled: false,
 
   load: function() {
 

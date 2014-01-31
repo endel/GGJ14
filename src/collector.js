@@ -19,6 +19,7 @@ var collector = {
     sprite.animations.add('default', frames, 16, true);
     sprite.play('default');
     sprite.anchor.setTo(0.5, 0.5);
+    sprite.body.setSize(20, 20, -5, -15);
     sprite.y -= sprite.height / 2;
 		this.group.add(sprite);
 
