@@ -6,6 +6,8 @@ var player = {
 
   // scoring
   score: 0,
+  scoreHud: null,
+
   energies: { 'blue': 1, 'green': 1, 'red': 1 },
 
   energiesToShow: { 'blue': true, 'green': false, 'red': false },
@@ -31,6 +33,8 @@ var player = {
   	this.instance.body.gravity.y = 40;
   	this.instance.body.collideWorldBounds = false;
     this.instance.body.setSize(20, this.instance.height - 10, 20, 10);
+
+    this.scoreHud = game.add.text(10, 100, "SCORE: 0", { font: '24px fippsregular', fill: "#000" });
 
 		this.instance.animations.add('right', ['sprites_01.png', 'sprites_02.png', 'sprites_03.png', 'sprites_04.png', 'sprites_05.png', 'sprites_06.png', 'sprites_07.png', 'sprites_08.png', 'sprites_09.png', 'sprites_10'.png],
                                  15, true);
@@ -58,6 +62,10 @@ var player = {
 	},
 
 	addEnergy: function(color) {
+		this.score += this.colorScore[color] * 2;
+    this.scoreHud.text = "SCORE: " + this.score;
+    this.scoreHud.dirty = true;
+
     worldVelocity += this.colorSpeed[color];
 		this.energies[color] += this.colorEnergy[color];
 		this.energies[color] = (this.energies[color] > 1) ? 1 : this.energies[color];
@@ -65,6 +73,8 @@ var player = {
 
 	addScore: function(color) {
 		this.score += this.colorScore[color];
+    this.scoreHud.text = "SCORE: " + this.score;
+    this.scoreHud.dirty = true;
 
     // lesser addEnergy
     worldVelocity += this.colorSpeed[color] / 2;
@@ -75,6 +85,9 @@ var player = {
   kill: function() {
     var previousWorldVelocity = worldVelocity,
         previousPlaybackRate = Number(sound.playbackRate);
+
+    console.log(previousPlaybackRate);
+
     game.add.tween(window).to({worldVelocity: 0}, 500).start();
 
     game.add.tween(player.energies).to({

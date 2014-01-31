@@ -1,7 +1,8 @@
 var filters = {
   all: [],
 
-  enabled: (game.renderType == Phaser.WEBGL),
+  enabled: true,
+  // enabled: (game.renderType == Phaser.WEBGL),
 
   load: function() {
 

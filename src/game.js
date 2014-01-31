@@ -1,17 +1,21 @@
-var game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
-// var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
+var game = null;
+window.onload = function() {
+  game = new Phaser.Game(1136, 640, Phaser.WEBGL, '', {
+    // var game = new Phaser.Game(1136, 640, Phaser.CANVAS, '', {
     preload: preload,
     create: create,
     update: update,
     render: render,
     debug: true
-});
+  });
+}
 
 var cursors;
 var worldVelocity = 4;
 var goToRestart = false;
 var countdown = 1000;
 var jumpKey;
+
 function preload(a) {
     // init
     filters.load();
@@ -137,9 +141,6 @@ function create() {
 }
 
 function restart() {
-
-
-    console.log("Restart...");
     window.onkeyup = function(e){
         if(goToRestart  && e.keyCode == 32) location.reload();
     }

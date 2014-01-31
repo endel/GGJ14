@@ -1,8 +1,8 @@
 var sound = {
   initialized: false,
   base: null,
-  playbackRate: 1.1,
-  lastPlaybackRate: 1.1,
+  playbackRate: 0.99,
+  lastPlaybackRate: 0.99,
 
   load: function() {
     game.load.audio('sound-base', 'assets/songs/base.wav');
@@ -22,7 +22,7 @@ var sound = {
     this.basssynths.play('', 0, 0, true);
     this.highvoices.play('', 0, 0, true);
 
-    this.setPlaybackRate(0.99, 1);
+    this.setPlaybackRate(this.playbackRate, 1);
   },
 
   setLevel: function(level) {
