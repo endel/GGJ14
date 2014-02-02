@@ -21,6 +21,8 @@ var collector = {
     sprite.anchor.setTo(0.5, 0.5);
     sprite.body.setSize(20, 20, -5, -15);
     sprite.y -= sprite.height / 2;
+    // // random first frame
+    // sprite.frame = Math.floor((Math.random() * numFrames));
 		this.group.add(sprite);
 
 		this.objects.push(sprite);
@@ -36,7 +38,8 @@ var collector = {
       player.addScore(sprite2.color);
     }
 
-    game.add.tween(sprite2).to({alpha: 0}, 200).onCompleteCallback(function() {
+    game.add.tween(sprite2.scale).to({x:3,y:3}, 100);
+    game.add.tween(sprite2).to({alpha: 0}, 100).onCompleteCallback(function() {
       sprite2.kill();
     }).start();
 		return false;

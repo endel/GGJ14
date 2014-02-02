@@ -36,13 +36,15 @@ var player = {
 
     this.scoreHud = game.add.text(10, 100, "SCORE: 0", { font: '24px fippsregular', fill: "#000" });
 
-		this.instance.animations.add('right', ['sprites_01.png', 'sprites_02.png', 'sprites_03.png', 'sprites_04.png', 'sprites_05.png', 'sprites_06.png', 'sprites_07.png', 'sprites_08.png', 'sprites_09.png', 'sprites_10'.png],
+		this.instance.animations.add('right', ['menina_correndo_01.png', 'menina_correndo_02.png', 'menina_correndo_03.png', 'menina_correndo_04.png', 'menina_correndo_05.png', 'menina_correndo_06.png', 'menina_correndo_07.png', 'menina_correndo_08.png', 'menina_correndo_09.png', 'menina_correndo_010.png', 'menina_correndo_011.png', 'menina_correndo_012.png'],
                                  15, true);
-		this.instance.animations.add('jump', ['menina_pulando_05.png', 'menina_pulando_06.png', 'menina_pulando_07.png'],
+		this.instance.animations.add('jump', ['menina_pulando_06.png', 'menina_pulando_07.png'],
                                  10, false);
-		this.instance.animations.add('collide', ['menina_colidindo_01.png', 'menina_colidindo_02.png', 'menina_colidindo_03.png', 'menina_colidindo_04.png', 'menina_colidindo_05.png', 'menina_colidindo_06.png', 'menina_colidindo_07.png', 'menina_colidindo_08.png', 'menina_colidindo_09.png', 'menina_colidindo_10.png', 'menina_colidindo_11.png', 'menina_colidindo_12.png', 'menina_colidindo_13.png', 'menina_colidindo_14.png', 'menina_colidindo_15'.png],
+		this.instance.animations.add('collide', ['menina_colidindo_01.png', 'menina_colidindo_02.png', 'menina_colidindo_03.png', 'menina_colidindo_04.png', 'menina_colidindo_05.png', 'menina_colidindo_06.png', 'menina_colidindo_07.png', 'menina_colidindo_08.png', 'menina_colidindo_09.png', 'menina_colidindo_10.png', 'menina_colidindo_11.png', 'menina_colidindo_12.png', 'menina_colidindo_13.png', 'menina_colidindo_14.png', 'menina_colidindo_15.png'],
                                  15, false);
 		this.instance.animations.add('confused', ['menina_colidindo_06.png', 'menina_colidindo_07.png', 'menina_colidindo_08.png', 'menina_colidindo_09.png', 'menina_colidindo_10.png', 'menina_colidindo_11.png', 'menina_colidindo_12.png', 'menina_colidindo_13.png', 'menina_colidindo_14.png', 'menina_colidindo_15.png'],
+                                 15, true);
+		this.instance.animations.add('falling', ['menina_caindo_01.png', 'menina_caindo_02.png', 'menina_caindo_03.png', 'menina_caindo_04.png'],
                                  15, true);
 
     // this.instance
@@ -63,8 +65,7 @@ var player = {
 
 	addEnergy: function(color) {
 		this.score += this.colorScore[color] * 2;
-    this.scoreHud.text = "SCORE: " + this.score;
-    this.scoreHud.dirty = true;
+    this.updateScoreText();
 
     worldVelocity += this.colorSpeed[color];
 		this.energies[color] += this.colorEnergy[color];
@@ -73,14 +74,18 @@ var player = {
 
 	addScore: function(color) {
 		this.score += this.colorScore[color];
-    this.scoreHud.text = "SCORE: " + this.score;
-    this.scoreHud.dirty = true;
+    this.updateScoreText();
 
     // lesser addEnergy
     worldVelocity += this.colorSpeed[color] / 2;
 		this.energies[color] += (this.colorEnergy[color] / 3);
 		this.energies[color] = (this.energies[color] > 1) ? 1 : this.energies[color];
 	},
+
+  updateScoreText: function() {
+    this.scoreHud.text = "SCORE: " + this.score;
+    this.scoreHud.dirty = true;
+  },
 
   kill: function() {
     var previousWorldVelocity = worldVelocity,

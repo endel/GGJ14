@@ -1,6 +1,7 @@
 var sound = {
   initialized: false,
-  base: null,
+
+  lastLevel: 1,
   playbackRate: 0.99,
   lastPlaybackRate: 0.99,
 
@@ -26,7 +27,7 @@ var sound = {
   },
 
   setLevel: function(level) {
-    if(this.initialized == false) {return null;}
+    if(this.initialized == false || level === this.lastLevel) {return null;}
 
     console.log(level, "oi endel");
 
@@ -47,12 +48,12 @@ var sound = {
         // game.add.tween(this.highvoices._sound).to({volume: 1}, 1000).start();
         break;
     }
+
+    this.lastLevel = level;
   },
 
   setPlaybackRate: function(rate, interval) {
-    if (!interval) {
-      interval = 1;
-    }
+    if (!interval) { interval = 1; }
     this.lastPlaybackRate = rate;
 
     game.add.tween(this.base._sound.playbackRate).to({value: rate}, interval).start();

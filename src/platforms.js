@@ -45,6 +45,8 @@ var platforms = {
 		this.platformsGroup = game.add.group();
 		this.obstaclesGroup = game.add.group();
 		this.insertGround();
+
+    setInterval(function() { platforms.updateScoreTimer(); }, 2000);
 	},
 
 	// insere uma plataforma de acordo com o level atual
@@ -79,7 +81,6 @@ var platforms = {
       maxTileY = 4;
       this.level = 1;
       this.tileInterval = 50 + (Math.random() * 50);
-
     }
 
     tileSize = Math.floor(((maxTileSize + 1) - (minTileSize - 1)) * Math.random()) + minTileSize;
@@ -144,6 +145,12 @@ var platforms = {
     //enable sound equalizations
     sound.setLevel(this.level);
 	},
+
+  updateScoreTimer: function() {
+    player.score += this.level * 5;
+    player.scoreHud.dirty = true;
+    player.updateScoreText();
+  },
 
 	addItems: function(platformX, platformY, platformWidth)
 	{
