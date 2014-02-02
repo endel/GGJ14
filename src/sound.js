@@ -18,9 +18,9 @@ var sound = {
     this.highvoices = game.add.audio('sound-highvoices', 1, true);
 
 
-    this.base.play('', 0, 0.3, true);
-    this.basssynths.play('', 0, 0.3, true);
-    this.highvoices.play('', 0, 0.3, true);
+    this.base.play('', 0, 0, true);
+    this.basssynths.play('', 0, 0, true);
+    this.highvoices.play('', 0, 0, true);
 
     this.setPlaybackRate(this.playbackRate, 1);
   },
@@ -28,30 +28,20 @@ var sound = {
   setLevel: function(level) {
     if(this.initialized == false) {return null;}
 
+    console.log(level, "oi endel");
+
     switch(level) {
       case 1:
         // game.add.tween(this.base._sound).to({volume: 0.5}, 1000).start();
         // game.add.tween(this.basssynths._sound).to({volume: 0.3}, 1000).start();
         // game.add.tween(this.highvoices._sound).to({volume: 1}, 1000).start();
-        this.base.volume(0.3);
-        this.basssynth.volume(0.1);
-        this.highvoices.volume(0.5);
-        console.log("oi endel!");
         break;
       case 2:
-        this.base.volume(0.4);
-        this.basssynth.volume(0.2);
-        this.highvoices.volume(0.7);
-        console.log("oi endel! 2");
         // game.add.tween(this.base._sound).to({volume: 0.1}, 1000).start();
         // game.add.tween(this.basssynths._sound).to({volume: 0.2}, 1000).start();
         // game.add.tween(this.highvoices._sound).to({volume: 0.2}, 1000).start();
         break;
       case 3:
-        console.log("oi endel! 3");
-        this.base.volume(0.6);
-        this.basssynth.volume(0.3);
-        this.highvoices.volume(1);
         // game.add.tween(this.base._sound).to({volume: 1}, 1000).start();
         // game.add.tween(this.basssynths._sound).to({volume: 1}, 1000).start();
         // game.add.tween(this.highvoices._sound).to({volume: 1}, 1000).start();

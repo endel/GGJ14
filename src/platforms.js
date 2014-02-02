@@ -49,7 +49,7 @@ var platforms = {
 
 	// insere uma plataforma de acordo com o level atual
 	insertGround: function()
-	{
+  {
 		var ground, visibleGround1, visibleGround2, visibleGround3, minTileSize, maxTileSize, tileSize, minTileY, maxTileY, tileY, currWidth, currHeight, currX;
 
     if (player.energiesToShow['red']) {
@@ -60,6 +60,7 @@ var platforms = {
       maxTileY = 5;
       this.level = 3;
       this.tileInterval = 100 + (Math.random() * 200);
+
 
     } else if (player.energiesToShow['green'] && !player.energiesToShow['red']) {
       // level 2
@@ -81,7 +82,7 @@ var platforms = {
 
     }
 
-		tileSize = Math.floor(((maxTileSize + 1) - (minTileSize - 1)) * Math.random()) + minTileSize;
+    tileSize = Math.floor(((maxTileSize + 1) - (minTileSize - 1)) * Math.random()) + minTileSize;
 		tileY = Math.floor(((maxTileY + 1) - (minTileY - 1)) * Math.random()) + minTileY;
 
 		if(this.prevPlatformTileY != 0)
@@ -140,6 +141,8 @@ var platforms = {
 		this.grounds.push(visibleGround2);
 		this.grounds.push(visibleGround3);
 
+    //enable sound equalizations
+    sound.setLevel(this.level);
 	},
 
 	addItems: function(platformX, platformY, platformWidth)
