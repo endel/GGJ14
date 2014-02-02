@@ -18,7 +18,7 @@ var player = {
   // adds energy qty per color
   colorEnergy: { 'blue': 0.1, 'green': 0.05, 'red': 0.01 },
   colorSpeed: { 'blue': 0.05, 'green': 0.1, 'red': 0.15 },
-  colorDownSpeed: 0.0005,
+  colorDownSpeed: 0.0002,
 
   // jump variables
   jumpVelocity: 500,

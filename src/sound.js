@@ -1,7 +1,7 @@
 var sound = {
   initialized: false,
 
-  lastLevel: 1,
+  lastLevel: 0,
   playbackRate: 0.99,
   lastPlaybackRate: 0.99,
 
@@ -19,9 +19,9 @@ var sound = {
     this.highvoices = game.add.audio('sound-highvoices', 1, true);
 
 
-    this.base.play('', 0, 0, true);
-    this.basssynths.play('', 0, 0, true);
-    this.highvoices.play('', 0, 0, true);
+    this.base.play('', 0, 1, true);
+    this.basssynths.play('', 0, 1, true);
+    this.highvoices.play('', 0, 1, true);
 
     this.setPlaybackRate(this.playbackRate, 1);
   },
@@ -29,23 +29,21 @@ var sound = {
   setLevel: function(level) {
     if(this.initialized == false || level === this.lastLevel) {return null;}
 
-    console.log(level, "oi endel");
-
     switch(level) {
       case 1:
-        // game.add.tween(this.base._sound).to({volume: 0.5}, 1000).start();
-        // game.add.tween(this.basssynths._sound).to({volume: 0.3}, 1000).start();
-        // game.add.tween(this.highvoices._sound).to({volume: 1}, 1000).start();
+        game.add.tween(this.base).to({volume: 0.1}, 1000).start();
+        game.add.tween(this.basssynths).to({volume: 0.2}, 3000).start();
+        game.add.tween(this.highvoices).to({volume: 0.2}, 4000).start();
         break;
       case 2:
-        // game.add.tween(this.base._sound).to({volume: 0.1}, 1000).start();
-        // game.add.tween(this.basssynths._sound).to({volume: 0.2}, 1000).start();
-        // game.add.tween(this.highvoices._sound).to({volume: 0.2}, 1000).start();
+        game.add.tween(this.base).to({volume: 0.5}, 1000).start();
+        game.add.tween(this.basssynths).to({volume: 0.3}, 3000).start();
+        game.add.tween(this.highvoices).to({volume: 0.35}, 4000).start();
         break;
       case 3:
-        // game.add.tween(this.base._sound).to({volume: 1}, 1000).start();
-        // game.add.tween(this.basssynths._sound).to({volume: 1}, 1000).start();
-        // game.add.tween(this.highvoices._sound).to({volume: 1}, 1000).start();
+        game.add.tween(this.base).to({volume: 1}, 1000).start();
+        game.add.tween(this.basssynths).to({volume: 1}, 3000).start();
+        game.add.tween(this.highvoices).to({volume: 1}, 4000).start();
         break;
     }
 

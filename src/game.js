@@ -141,6 +141,7 @@ function create() {
 }
 
 function restart() {
+    clearInterval(platforms.updateScoreInterval);
     window.onkeyup = function(e){
         if(goToRestart  && e.keyCode == 32) location.reload();
     }

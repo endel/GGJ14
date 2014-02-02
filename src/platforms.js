@@ -46,7 +46,7 @@ var platforms = {
 		this.obstaclesGroup = game.add.group();
 		this.insertGround();
 
-    setInterval(function() { platforms.updateScoreTimer(); }, 2000);
+    this.updateScoreInterval = setInterval(function() { platforms.updateScoreTimer(); }, 2000);
 	},
 
 	// insere uma plataforma de acordo com o level atual
