@@ -55,7 +55,7 @@ var sound = {
     this.lastPlaybackRate = rate;
 
     game.add.tween(this.base._sound.playbackRate).to({value: rate}, interval).start();
-    game.add.tween(this.basssynths._sound.playbackRate).to({value: rate}, interval).start();
+    game.add.tween(this.sound-basssynths._sound.playbackRate).to({value: rate}, interval).start();
 
     var tween = game.add.tween(this.highvoices._sound.playbackRate).to({value: rate}, interval).start();
     return tween;
